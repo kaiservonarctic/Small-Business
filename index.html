@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Federal Small Business Contracting Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0A1628; }
+  </style>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // Fetch the JSX file and run it through Babel in the browser
+    fetch('small-business-contracting-guide.jsx')
+      .then(r => r.text())
+      .then(jsx => {
+        // Remove the import/export statements for browser compatibility
+        let code = jsx
+          .replace(/^import\s.*?;\s*/m, '')
+          .replace(/^export\s+default\s+/m, '');
+
+        // Add React globals and render call
+        code = `const { useState, useEffect, useRef } = React;\n${code}\nconst root = ReactDOM.createRoot(document.getElementById("root"));\nroot.render(React.createElement(App));`;
+
+        // Transform JSX to JS using Babel
+        const transformed = Babel.transform(code, { presets: ['react'] }).code;
+
+        // Execute the transformed code
+        const script = document.createElement('script');
+        script.textContent = transformed;
+        document.body.appendChild(script);
+      })
+      .catch(err => {
+        document.getElementById('root').innerHTML =
+          '<div style="color:#CBD5E1;padding:40px;text-align:center;font-family:system-ui">' +
+          '<h2>Loading Error</h2><p>Could not load the application. Please try refreshing.</p>' +
+          '<p style="color:#94A3B8;font-size:13px;margin-top:12px">' + err.message + '</p></div>';
+      });
+  </script>
+</body>
+</html>
