@@ -349,7 +349,6 @@
     ]
   }
 }
-
   </script>
   <script type="text/babel" data-presets="react">
     const { useState, useEffect, useRef } = React;
@@ -453,7 +452,6 @@ function NavBar({ sections, active, onNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <div style={{ position: "sticky", top: 0, zIndex: 100 }}>
-      <GovBanner />
       <nav style={{ background: COLORS.primaryDark, borderBottom: `4px solid ${COLORS.accent}` }}>
         <div
           style={{
@@ -1256,7 +1254,6 @@ const SECTION_COMPONENTS = {
   landscape: LandscapeSection,
   resources: ResourcesSection,
 };
-
 function App() {
   const [section, setSection] = useState("home");
   const mainRef = useRef(null);
