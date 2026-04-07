@@ -349,7 +349,6 @@
     ]
   }
 }
-
   </script>
   <script type="text/babel" data-presets="react">
     const { useState, useEffect, useRef } = React;
@@ -449,69 +448,10 @@ function Paragraphs({ items }) {
 
 // ─── Site Chrome ───
 
-function GovBanner() {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <div style={{ background: COLORS.bgLight, fontSize: 13 }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "4px 24px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <img
-            src="https://flagcdn.com/20x15/us.png"
-            alt="U.S. flag"
-            style={{ width: 20, height: 15 }}
-          />
-          <span style={{ color: COLORS.textLight }}>
-            An official website of the United States government
-          </span>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              background: "none",
-              border: "none",
-              color: COLORS.primaryLight,
-              cursor: "pointer",
-              fontSize: 13,
-              textDecoration: "underline",
-              padding: 0,
-            }}
-          >
-            Here's how you know {expanded ? "▲" : "▼"}
-          </button>
-        </div>
-        {expanded && (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 32,
-              padding: "16px 0 12px 28px",
-              color: COLORS.textLight,
-              fontSize: 13,
-              lineHeight: 1.6,
-            }}
-          >
-            <div style={{ flex: "1 1 280px" }}>
-              <strong style={{ color: COLORS.text }}>Official websites use .gov</strong>
-              <br />
-              A .gov website belongs to an official government organization in the United States.
-            </div>
-            <div style={{ flex: "1 1 280px" }}>
-              <strong style={{ color: COLORS.text }}>Secure .gov websites use HTTPS</strong>
-              <br />
-              A lock or https:// means you've safely connected to the .gov website.
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function NavBar({ sections, active, onNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <div style={{ position: "sticky", top: 0, zIndex: 100 }}>
-      <GovBanner />
       <nav style={{ background: COLORS.primaryDark, borderBottom: `4px solid ${COLORS.accent}` }}>
         <div
           style={{
@@ -1314,7 +1254,6 @@ const SECTION_COMPONENTS = {
   landscape: LandscapeSection,
   resources: ResourcesSection,
 };
-
 function App() {
   const [section, setSection] = useState("home");
   const mainRef = useRef(null);
