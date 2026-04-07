@@ -1,14 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-
-const SECTIONS = [
-  { id: "home", label: "Home" },
-  { id: "foundations", label: "Foundations" },
-  { id: "programs", label: "SBA Programs" },
-  { id: "far19", label: "FAR Part 19" },
-  { id: "doe-em", label: "DOE-EM" },
-  { id: "landscape", label: "2026 Landscape" },
-  { id: "resources", label: "Resources" },
-];
+import { useState, useRef } from "react";
+import CONTENT from "./content.json";
 
 // ─── USWDS-Inspired Color Palette ───
 const COLORS = {
@@ -47,6 +38,63 @@ const COLORS = {
   infoLight: "#e7f6f8",
 };
 
+// Maps content.json color keywords to USWDS palette colors
+const STATUS_COLORS = {
+  red: COLORS.error,
+  green: COLORS.success,
+  yellow: COLORS.warning,
+  blue: COLORS.primary,
+  info: COLORS.info,
+  primary: COLORS.primary,
+};
+
+const resolveColor = (c) => STATUS_COLORS[c] || c || COLORS.primary;
+
+// ─── Markdown-lite renderer: handles **bold** and *italic* ───
+function Md({ text }) {
+  if (!text) return null;
+  const parts = [];
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*)/g;
+  let lastIndex = 0;
+  let match;
+  let key = 0;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(<span key={key++}>{text.slice(lastIndex, match.index)}</span>);
+    }
+    if (match[2]) {
+      parts.push(
+        <strong key={key++} style={{ color: COLORS.primaryDark, fontWeight: 700 }}>
+          {match[2]}
+        </strong>
+      );
+    } else if (match[3]) {
+      parts.push(<em key={key++}>{match[3]}</em>);
+    }
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    parts.push(<span key={key++}>{text.slice(lastIndex)}</span>);
+  }
+  return <>{parts}</>;
+}
+
+// Renders an array of paragraph strings with markdown-lite support
+function Paragraphs({ items }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <>
+      {items.map((p, i) => (
+        <p key={i} style={{ marginTop: i > 0 ? 12 : 0 }}>
+          <Md text={p} />
+        </p>
+      ))}
+    </>
+  );
+}
+
+// ─── Site Chrome ───
+
 function GovBanner() {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -77,21 +125,25 @@ function GovBanner() {
           </button>
         </div>
         {expanded && (
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 32,
-            padding: "16px 0 12px 28px",
-            color: COLORS.textLight,
-            fontSize: 13,
-            lineHeight: 1.6,
-          }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 32,
+              padding: "16px 0 12px 28px",
+              color: COLORS.textLight,
+              fontSize: 13,
+              lineHeight: 1.6,
+            }}
+          >
             <div style={{ flex: "1 1 280px" }}>
-              <strong style={{ color: COLORS.text }}>Official websites use .gov</strong><br />
+              <strong style={{ color: COLORS.text }}>Official websites use .gov</strong>
+              <br />
               A .gov website belongs to an official government organization in the United States.
             </div>
             <div style={{ flex: "1 1 280px" }}>
-              <strong style={{ color: COLORS.text }}>Secure .gov websites use HTTPS</strong><br />
+              <strong style={{ color: COLORS.text }}>Secure .gov websites use HTTPS</strong>
+              <br />
               A lock or https:// means you've safely connected to the .gov website.
             </div>
           </div>
@@ -101,55 +153,58 @@ function GovBanner() {
   );
 }
 
-function NavBar({ active, onNav }) {
+function NavBar({ sections, active, onNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <div style={{ position: "sticky", top: 0, zIndex: 100 }}>
       <GovBanner />
-      <nav style={{
-        background: COLORS.primaryDark,
-        borderBottom: `4px solid ${COLORS.accent}`,
-      }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 64,
-        }}>
+      <nav style={{ background: COLORS.primaryDark, borderBottom: `4px solid ${COLORS.accent}` }}>
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: "0 24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 64,
+          }}
+        >
           <div
             style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}
             onClick={() => onNav("home")}
           >
-            <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: 4,
-              background: COLORS.white,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 800,
-              fontSize: 14,
-              color: COLORS.primaryDark,
-              letterSpacing: "-0.02em",
-            }}>
+            <div
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: 4,
+                background: COLORS.white,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 800,
+                fontSize: 14,
+                color: COLORS.primaryDark,
+                letterSpacing: "-0.02em",
+              }}
+            >
               SB
             </div>
-            <span style={{
-              fontFamily: "'Merriweather', Georgia, serif",
-              fontSize: 17,
-              fontWeight: 700,
-              color: COLORS.white,
-            }}>
-              Federal SB Contracting
+            <span
+              style={{
+                fontFamily: "'Merriweather', Georgia, serif",
+                fontSize: 17,
+                fontWeight: 700,
+                color: COLORS.white,
+              }}
+            >
+              {CONTENT.meta.siteTitle}
             </span>
           </div>
 
           <div style={{ display: "flex", gap: 2, alignItems: "center" }} className="desktop-nav">
-            {SECTIONS.map((s) => (
+            {sections.map((s) => (
               <button
                 key={s.id}
                 onClick={() => onNav(s.id)}
@@ -188,15 +243,21 @@ function NavBar({ active, onNav }) {
         </div>
 
         {mobileOpen && (
-          <div style={{
-            background: COLORS.primaryDarker,
-            borderTop: "1px solid rgba(255,255,255,0.1)",
-            padding: "8px 24px",
-          }} className="mobile-dropdown">
-            {SECTIONS.map((s) => (
+          <div
+            style={{
+              background: COLORS.primaryDarker,
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+              padding: "8px 24px",
+            }}
+            className="mobile-dropdown"
+          >
+            {sections.map((s) => (
               <button
                 key={s.id}
-                onClick={() => { onNav(s.id); setMobileOpen(false); }}
+                onClick={() => {
+                  onNav(s.id);
+                  setMobileOpen(false);
+                }}
                 style={{
                   display: "block",
                   width: "100%",
@@ -229,6 +290,8 @@ function NavBar({ active, onNav }) {
   );
 }
 
+// ─── Reusable UI ───
+
 function Card({ children, style = {}, highlight = false }) {
   return (
     <div
@@ -248,6 +311,7 @@ function Card({ children, style = {}, highlight = false }) {
 }
 
 function Badge({ color = COLORS.primary, children }) {
+  const c = resolveColor(color);
   const bgMap = {
     [COLORS.success]: COLORS.successLight,
     [COLORS.error]: COLORS.errorLight,
@@ -272,9 +336,9 @@ function Badge({ color = COLORS.primary, children }) {
         fontWeight: 700,
         textTransform: "uppercase",
         letterSpacing: "0.04em",
-        color: textMap[color] || COLORS.primaryDark,
-        background: bgMap[color] || COLORS.primaryPale,
-        border: `1px solid ${color}44`,
+        color: textMap[c] || COLORS.primaryDark,
+        background: bgMap[c] || COLORS.primaryPale,
+        border: `1px solid ${c}44`,
       }}
     >
       {children}
@@ -379,7 +443,7 @@ function Accordion({ items }) {
                 fontFamily: "'Source Sans 3', system-ui, sans-serif",
               }}
             >
-              {item.content}
+              {item.render ? item.render() : <Paragraphs items={item.paragraphs} />}
             </div>
           )}
         </div>
@@ -410,20 +474,23 @@ function StatBox({ number, label, sublabel }) {
   );
 }
 
-// ─── Section Content ───
+// ─── Section Renderers (driven by content.json) ───
 
 function HomeSection({ onNav }) {
+  const d = CONTENT.home;
   return (
     <div>
-      <div style={{
-        background: COLORS.primaryDark,
-        margin: "-32px -24px 32px -24px",
-        padding: "48px 24px 40px",
-        borderBottom: `4px solid ${COLORS.gold}`,
-      }}>
+      <div
+        style={{
+          background: COLORS.primaryDark,
+          margin: "-32px -24px 32px -24px",
+          padding: "48px 24px 40px",
+          borderBottom: `4px solid ${COLORS.gold}`,
+        }}
+      >
         <div style={{ textAlign: "center", maxWidth: 800, margin: "0 auto" }}>
           <div style={{ marginBottom: 16 }}>
-            <Badge color={COLORS.info}>Practitioner Reference Guide</Badge>
+            <Badge color={COLORS.info}>{d.badgeText}</Badge>
           </div>
           <h1
             style={{
@@ -435,11 +502,11 @@ function HomeSection({ onNav }) {
               margin: 0,
             }}
           >
-            Federal Small Business Contracting
+            {d.headline}
           </h1>
           <p
             style={{
-              color: "rgba(255,255,255,0.8)",
+              color: "rgba(255,255,255,0.85)",
               fontSize: "clamp(16px, 2vw, 18px)",
               lineHeight: 1.65,
               marginTop: 16,
@@ -448,20 +515,26 @@ function HomeSection({ onNav }) {
               marginRight: "auto",
             }}
           >
-            A comprehensive guide to FAR Part 19, SBA socioeconomic programs, DOE
-            Environmental Management contracting, and the evolving policy landscape —
-            written for small businesses and federal contracting professionals.
+            {d.subtitle}
           </p>
         </div>
       </div>
 
       <Card style={{ maxWidth: 800, margin: "0 auto 32px" }} highlight>
-        <div style={{ color: COLORS.textLight, fontSize: 13, marginBottom: 4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-          Last updated: March 2026
+        <div
+          style={{
+            color: COLORS.textLight,
+            fontSize: 13,
+            marginBottom: 4,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+          }}
+        >
+          Last updated: {CONTENT.meta.lastUpdated}
         </div>
         <div style={{ color: COLORS.text, fontSize: 15, lineHeight: 1.6 }}>
-          Reflects the FAR Part 19 overhaul (September 2025), FAC 2025-06 threshold
-          adjustments, SBA 8(a) program changes, and current DOE-EM acquisition activity.
+          <Md text={d.updateNote} />
         </div>
       </Card>
 
@@ -478,10 +551,9 @@ function HomeSection({ onNav }) {
           padding: "20px 16px",
         }}
       >
-        <StatBox number="$8.2B" label="DOE-EM Annual Budget" sublabel="~90% contracted to industry" />
-        <StatBox number="23%" label="Federal SB Goal" sublabel="Government-wide prime target" />
-        <StatBox number="~4,300" label="8(a) Firms (Dec 2025)" sublabel="Before audit suspensions" />
-        <StatBox number="300+" label="FAR Rules Removed" sublabel="Part 19 streamlining" />
+        {d.stats.map((s) => (
+          <StatBox key={s.label} {...s} />
+        ))}
       </div>
 
       <div
@@ -493,469 +565,295 @@ function HomeSection({ onNav }) {
           margin: "0 auto",
         }}
       >
-        {SECTIONS.filter((s) => s.id !== "home").map((s) => (
-          <button
-            key={s.id}
-            onClick={() => onNav(s.id)}
-            style={{
-              background: COLORS.white,
-              border: `1px solid ${COLORS.borderLight}`,
-              borderRadius: 6,
-              padding: "16px 20px",
-              cursor: "pointer",
-              textAlign: "left",
-              transition: "border-color 0.15s, box-shadow 0.15s",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = COLORS.primary;
-              e.currentTarget.style.boxShadow = "0 2px 8px rgba(26,68,128,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = COLORS.borderLight;
-              e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)";
-            }}
-          >
-            <div style={{ color: COLORS.primaryDark, fontWeight: 700, fontSize: 15, marginBottom: 4 }}>
-              {s.label}
-            </div>
-            <div style={{ color: COLORS.primary, fontSize: 14, fontWeight: 600 }}>Explore →</div>
-          </button>
-        ))}
+        {CONTENT.sections
+          .filter((s) => s.id !== "home")
+          .map((s) => (
+            <button
+              key={s.id}
+              onClick={() => onNav(s.id)}
+              style={{
+                background: COLORS.white,
+                border: `1px solid ${COLORS.borderLight}`,
+                borderRadius: 6,
+                padding: "16px 20px",
+                cursor: "pointer",
+                textAlign: "left",
+                transition: "border-color 0.15s, box-shadow 0.15s",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = COLORS.primary;
+                e.currentTarget.style.boxShadow = "0 2px 8px rgba(26,68,128,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = COLORS.borderLight;
+                e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)";
+              }}
+            >
+              <div
+                style={{
+                  color: COLORS.primaryDark,
+                  fontWeight: 700,
+                  fontSize: 15,
+                  marginBottom: 4,
+                }}
+              >
+                {s.label}
+              </div>
+              <div style={{ color: COLORS.primary, fontSize: 14, fontWeight: 600 }}>Explore →</div>
+            </button>
+          ))}
       </div>
     </div>
   );
 }
 
 function FoundationsSection() {
+  const d = CONTENT.foundations;
+  const items = d.topics.map((t) => {
+    if (t.thresholds) {
+      return {
+        title: t.title,
+        render: () => (
+          <div>
+            <p style={{ marginTop: 0 }}>FAC 2025-06 updated several critical dollar thresholds:</p>
+            <div style={{ marginTop: 12, display: "grid", gap: 6 }}>
+              {t.thresholds.map((th) => (
+                <div
+                  key={th.label}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "10px 14px",
+                    background: COLORS.bgLight,
+                    borderRadius: 4,
+                    gap: 12,
+                    flexWrap: "wrap",
+                    border: `1px solid ${COLORS.borderLight}`,
+                  }}
+                >
+                  <span style={{ color: COLORS.text, fontSize: 14 }}>{th.label}</span>
+                  <span style={{ color: COLORS.primaryDark, fontWeight: 700, fontSize: 14 }}>
+                    {th.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ),
+      };
+    }
+    return { title: t.title, paragraphs: t.paragraphs };
+  });
+
   return (
     <div>
-      <SectionHeading
-        title="Small Business Contracting Foundations"
-        subtitle="Core concepts every small business and federal professional needs to understand before diving into specific programs and regulations."
-      />
-
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
       <Card style={{ marginBottom: 20 }}>
-        <h3 style={{ color: COLORS.primaryDark, fontSize: 18, margin: "0 0 12px 0", fontFamily: "'Merriweather', Georgia, serif" }}>
-          Why Small Business Matters in Federal Procurement
+        <h3
+          style={{
+            color: COLORS.primaryDark,
+            fontSize: 18,
+            margin: "0 0 12px 0",
+            fontFamily: "'Merriweather', Georgia, serif",
+          }}
+        >
+          {d.intro.title}
         </h3>
         <p style={{ color: COLORS.text, fontSize: 15, lineHeight: 1.7 }}>
-          The Small Business Act (15 U.S.C. § 631 et seq.) establishes that the federal government should award a "fair proportion" of contracts to small businesses. This statutory mandate drives the entire framework of set-asides, goals, and socioeconomic programs. The government-wide goal is 23% of prime contract dollars to small businesses, with additional subcategory goals for specific socioeconomic groups.
+          <Md text={d.intro.body} />
         </p>
       </Card>
-
-      <Accordion
-        items={[
-          {
-            title: "The Rule of Two",
-            content: (
-              <div>
-                <p>The Rule of Two is the single most important protection for small businesses in federal contracting. It requires contracting officers to set aside acquisitions for small businesses when they have a reasonable expectation that at least two responsible small business concerns will submit offers at fair market prices.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Statutory vs. Regulatory:</strong> Between the micro-purchase threshold and simplified acquisition threshold (SAT), the Rule of Two is <em>statutory</em> — Congress requires it. Above the SAT, it has been <em>regulatory</em> — the FAR Council chose to keep it. The September 2025 FAR Part 19 overhaul retained the Rule of Two above the SAT, calling it "essential to sound procurement."</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Key change (2025):</strong> The Rule of Two no longer applies to task/delivery orders under multiple-award contracts. Contracting officers have discretion at the order level, and that discretionary decision cannot be protested.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Size Standards & NAICS Codes",
-            content: (
-              <div>
-                <p>SBA assigns a size standard to every North American Industry Classification System (NAICS) code. These standards define the maximum revenue or employee count a business can have and still be considered "small" for a given type of work. Size standards vary widely — from $9 million in some service industries to over $47 million in facilities support and $1 billion+ in some manufacturing sectors.</p>
-                <p style={{ marginTop: 10 }}>The NAICS code assigned to a solicitation determines which size standard applies. Businesses must self-certify as small relative to the applicable standard. Misrepresentation of small business status is a federal offense subject to penalties under the False Claims Act.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Set-Asides vs. Sole-Source Awards",
-            content: (
-              <div>
-                <p><strong style={{ color: COLORS.primaryDark }}>Set-Aside:</strong> A competitive procurement restricted to a particular category of small business. All eligible firms in the designated category can compete.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Sole-Source:</strong> A non-competitive award to a single firm, authorized under specific statutory authority (most commonly through the 8(a) program). Sole-source awards have dollar thresholds that were adjusted in October 2025 — the competitive threshold for 8(a) rose to $8.5M for manufacturing and $5.5M for other industries.</p>
-                <p style={{ marginTop: 10 }}>Under the 2025 FAR overhaul, contracting officers must first attempt a competitive 8(a) acquisition using government-wide vehicles before turning to sole-source, even below the competitive threshold.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Prime Contracting vs. Subcontracting",
-            content: (
-              <div>
-                <p>Federal small business participation happens at two levels: prime contracting (direct awards from the government) and subcontracting (awards from prime contractors to smaller firms). Both count toward agency small business goals, though they're tracked differently.</p>
-                <p style={{ marginTop: 10 }}>At DOE, this distinction is especially important because approximately 80% of the Department's procurement spending goes to Facility Management Contractors (FMCs), which include M&O contractors and large cleanup contractors. These primes are required to maintain small business subcontracting plans and goals. DOE is unique in that first-tier subcontracts count toward the Department's prime contracting goals under Section 318 of P.L. 113-76.</p>
-              </div>
-            ),
-          },
-          {
-            title: "The SBA Procurement Scorecard",
-            content: (
-              <div>
-                <p>Each fiscal year, SBA evaluates the 24 CFO Act agencies against their negotiated small business contracting goals. Agencies are graded A+ (≥120% of goal) through F (&lt;70%). The scorecard covers prime and subcontracting goals across five categories: overall small business, SDB, WOSB, SDVOSB, and HUBZone.</p>
-                <p style={{ marginTop: 10 }}>For FY2025, all government-wide prime goals are set at their statutory floors: 23% small business, 5% SDB, 5% WOSB, 5% SDVOSB, and 3% HUBZone. The SDB goal returned to 5% after the Trump Administration rescinded EO 14091, which had incrementally raised it toward 15%.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Key Acquisition Thresholds (Effective Oct 1, 2025)",
-            content: (
-              <div>
-                <p>FAC 2025-06 updated several critical dollar thresholds:</p>
-                <div style={{ marginTop: 12, display: "grid", gap: 6 }}>
-                  {[
-                    ["Micro-Purchase Threshold (MPT)", "$15,000"],
-                    ["Simplified Acquisition Threshold (SAT)", "$250,000"],
-                    ["8(a) Competitive Threshold (Manufacturing)", "$8.5 Million"],
-                    ["8(a) Competitive Threshold (All Other)", "$5.5 Million"],
-                    ["8(a) Sole-Source Limit (Manufacturing)", "$8.5 Million"],
-                    ["8(a) Sole-Source Limit (All Other)", "$5.5 Million"],
-                  ].map(([label, val]) => (
-                    <div
-                      key={label}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: "10px 14px",
-                        background: COLORS.bgLight,
-                        borderRadius: 4,
-                        gap: 12,
-                        flexWrap: "wrap",
-                        border: `1px solid ${COLORS.borderLight}`,
-                      }}
-                    >
-                      <span style={{ color: COLORS.text, fontSize: 14 }}>{label}</span>
-                      <span style={{ color: COLORS.primaryDark, fontWeight: 700, fontSize: 14 }}>{val}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ),
-          },
-        ]}
-      />
+      <Accordion items={items} />
     </div>
   );
 }
 
 function ProgramsSection() {
-  const programs = [
-    {
-      name: "8(a) Business Development",
-      statute: "15 U.S.C. § 637(a)",
-      regs: "13 C.F.R. Part 124",
-      status: "Major changes",
-      statusColor: COLORS.error,
-      description:
-        "Nine-year program for socially and economically disadvantaged small businesses. Provides access to set-aside and sole-source contracts, plus business development support.",
-      current:
-        "The program is undergoing its most significant transformation since inception. SBA eliminated the race-based presumption of social disadvantage (January 2026), launched the first-ever program audit (June 2025), suspended 1,091 firms for failing to respond to a data call (January 2026), and initiated termination proceedings against ~800 firms (154 in D.C. for economic disadvantage failures, 628 nationally for non-compliance). New admissions dropped to 65 firms in 2025, down from 2,100+ during the prior administration.",
-    },
-    {
-      name: "HUBZone",
-      statute: "15 U.S.C. § 657a",
-      regs: "13 C.F.R. Part 126",
-      status: "Stable",
-      statusColor: COLORS.success,
-      description:
-        "Firms headquartered in a Historically Underutilized Business Zone with at least 35% of employees residing in a HUBZone qualify for set-aside and sole-source opportunities.",
-      current:
-        "No major regulatory changes. The HUBZone map is maintained by SBA and updated periodically. As 8(a) paths narrow, some agencies may look to HUBZone set-asides as an alternative socioeconomic vehicle. The 3% government-wide goal remains the statutory floor.",
-    },
-    {
-      name: "Service-Disabled Veteran-Owned SB (SDVOSB)",
-      statute: "15 U.S.C. § 657f",
-      regs: "13 C.F.R. Part 128",
-      status: "Goal increased",
-      statusColor: COLORS.warning,
-      description:
-        "Firms owned and controlled by service-disabled veterans. SBA took over certification from VA through the Veterans Small Business Certification (VetCert) program.",
-      current:
-        "The SDVOSB prime contracting goal increased from 3% to 5% under the FY2024 NDAA (P.L. 118-31). SBA cleared a backlog of 2,700 VetCert applications in November 2025. This program is well-positioned going forward as the administration has signaled strong support for veteran-owned businesses.",
-    },
-    {
-      name: "Women-Owned Small Business (WOSB/EDWOSB)",
-      statute: "15 U.S.C. § 637(m)",
-      regs: "13 C.F.R. Part 127",
-      status: "Stable",
-      statusColor: COLORS.success,
-      description:
-        "WOSB set-asides are available in NAICS codes where women are underrepresented. Economically Disadvantaged WOSBs (EDWOSBs) have access to sole-source awards.",
-      current:
-        "No substantive changes in the FAR Part 19 overhaul. The 5% government-wide goal remains. SBA certifies WOSBs through its certification portal.",
-    },
-    {
-      name: "DOE Mentor-Protégé Program",
-      statute: "42 U.S.C. § 7256(f)",
-      regs: "10 C.F.R. Part 719 (reference)",
-      status: "Active",
-      statusColor: COLORS.success,
-      description:
-        "Pairs DOE prime contractors (mentors) with small businesses (protégés) to develop the protégé's capabilities through subcontracting, technical assistance, and business development.",
-      current:
-        "Administered by DOE's Office of Small Business Programs (OSBP) at the Department level — not by individual program offices like EM. DOE-EM participates actively through its prime contractors. There is no such thing as a 'mentor-protégé contract' as a distinct vehicle; M-P pairs work together through prime/sub arrangements, joint ventures, teaming agreements, or subcontracting plans.",
-    },
-  ];
-
+  const d = CONTENT.programs;
   return (
     <div>
-      <SectionHeading
-        title="SBA Socioeconomic Programs"
-        subtitle="Federal small business programs create preferential access to government contracts for qualifying businesses. Here's how each program works and its current status."
-      />
-
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {programs.map((p) => (
-          <Card key={p.name}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                flexWrap: "wrap",
-                gap: 10,
-                marginBottom: 12,
-              }}
-            >
-              <h3
-                style={{
-                  color: COLORS.primaryDark,
-                  fontSize: 18,
-                  fontWeight: 700,
-                  margin: 0,
-                  fontFamily: "'Merriweather', Georgia, serif",
-                }}
-              >
-                {p.name}
-              </h3>
-              <Badge color={p.statusColor}>{p.status}</Badge>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                gap: 16,
-                marginBottom: 12,
-                flexWrap: "wrap",
-              }}
-            >
-              <span style={{ color: COLORS.textLight, fontSize: 13 }}>
-                <strong style={{ color: COLORS.text }}>Statute:</strong> {p.statute}
-              </span>
-              <span style={{ color: COLORS.textLight, fontSize: 13 }}>
-                <strong style={{ color: COLORS.text }}>Regs:</strong> {p.regs}
-              </span>
-            </div>
-            <p style={{ color: COLORS.text, fontSize: 15, lineHeight: 1.7, margin: "0 0 14px 0" }}>
-              {p.description}
-            </p>
-            <div
-              style={{
-                background: COLORS.bgLight,
-                borderRadius: 6,
-                padding: "14px 16px",
-                borderLeft: `4px solid ${p.statusColor}`,
-              }}
-            >
+        {d.items.map((p) => {
+          const statusColor = resolveColor(p.statusColor);
+          return (
+            <Card key={p.name}>
               <div
                 style={{
-                  color: COLORS.textLight,
-                  fontSize: 12,
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.04em",
-                  marginBottom: 6,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  gap: 10,
+                  marginBottom: 12,
                 }}
               >
-                Current Status — March 2026
+                <h3
+                  style={{
+                    color: COLORS.primaryDark,
+                    fontSize: 18,
+                    fontWeight: 700,
+                    margin: 0,
+                    fontFamily: "'Merriweather', Georgia, serif",
+                  }}
+                >
+                  {p.name}
+                </h3>
+                <Badge color={statusColor}>{p.status}</Badge>
               </div>
-              <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-                {p.current}
+              <div style={{ display: "flex", gap: 16, marginBottom: 12, flexWrap: "wrap" }}>
+                <span style={{ color: COLORS.textLight, fontSize: 13 }}>
+                  <strong style={{ color: COLORS.text }}>Statute:</strong> {p.statute}
+                </span>
+                <span style={{ color: COLORS.textLight, fontSize: 13 }}>
+                  <strong style={{ color: COLORS.text }}>Regs:</strong> {p.regs}
+                </span>
+              </div>
+              <p style={{ color: COLORS.text, fontSize: 15, lineHeight: 1.7, margin: "0 0 14px 0" }}>
+                <Md text={p.description} />
               </p>
-            </div>
-          </Card>
-        ))}
+              <div
+                style={{
+                  background: COLORS.bgLight,
+                  borderRadius: 6,
+                  padding: "14px 16px",
+                  borderLeft: `4px solid ${statusColor}`,
+                }}
+              >
+                <div
+                  style={{
+                    color: COLORS.textLight,
+                    fontSize: 12,
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.04em",
+                    marginBottom: 6,
+                  }}
+                >
+                  Current Status — {CONTENT.meta.lastUpdated}
+                </div>
+                <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+                  <Md text={p.current} />
+                </p>
+              </div>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 function FAR19Section() {
+  const d = CONTENT.far19;
   return (
     <div>
-      <SectionHeading
-        title="FAR Part 19 — The 2025 Overhaul"
-        subtitle="On September 26, 2025, the FAR Council released the most significant rewrite of small business contracting rules in over 40 years as part of the Revolutionary FAR Overhaul (RFO)."
-      />
-
-      <Card style={{ marginBottom: 20, background: COLORS.warningLight, borderLeft: `4px solid ${COLORS.warning}` }}>
-        <h3 style={{ color: COLORS.primaryDark, fontSize: 16, margin: "0 0 8px 0", fontFamily: "'Merriweather', Georgia, serif" }}>Implementation Note</h3>
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
+      <Card
+        style={{
+          marginBottom: 20,
+          background: COLORS.warningLight,
+          borderLeft: `4px solid ${COLORS.warning}`,
+        }}
+      >
+        <h3
+          style={{
+            color: COLORS.primaryDark,
+            fontSize: 16,
+            margin: "0 0 8px 0",
+            fontFamily: "'Merriweather', Georgia, serif",
+          }}
+        >
+          {d.alert.title}
+        </h3>
         <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-          The FAR Part 19 rewrite is being implemented agency-by-agency through class deviations — it is not yet final rulemaking. Track which agencies have adopted the updated text. GSA issued Class Deviation RFO-2025-19 early on. The comment period closed November 3, 2025. The FAR Council will subject the overhauled FAR to formal notice-and-comment rulemaking before promulgation.
+          <Md text={d.alert.body} />
         </p>
       </Card>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, marginBottom: 24 }}>
-        <Card>
-          <h4 style={{ color: COLORS.primary, fontSize: 15, margin: "0 0 10px 0", fontWeight: 700 }}>Structural Reorganization</h4>
-          <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            Part 19 was retitled from "Small Business Programs" to "Small Business" and reorganized around the acquisition lifecycle into three subparts: <strong style={{ color: COLORS.primaryDark }}>19.1 Presolicitation</strong>, <strong style={{ color: COLORS.primaryDark }}>19.2 Evaluation and Award</strong>, and <strong style={{ color: COLORS.primaryDark }}>19.3 Postaward</strong>. Close to 300 individual rules and subparts were removed.
-          </p>
-        </Card>
-        <Card>
-          <h4 style={{ color: COLORS.primary, fontSize: 15, margin: "0 0 10px 0", fontWeight: 700 }}>Rule of Two Preserved</h4>
-          <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            The Rule of Two survived — retained above the SAT as "essential to sound procurement." However, it now applies to <strong style={{ color: COLORS.primaryDark }}>all small businesses first</strong>, before socioeconomic categories. Contracting officers must consider an overall SB set-aside before moving to a specific program.
-          </p>
-        </Card>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: 16,
+          marginBottom: 24,
+        }}
+      >
+        {d.highlights.map((h) => (
+          <Card key={h.title}>
+            <h4
+              style={{
+                color: COLORS.primary,
+                fontSize: 15,
+                margin: "0 0 10px 0",
+                fontWeight: 700,
+              }}
+            >
+              {h.title}
+            </h4>
+            <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+              <Md text={h.body} />
+            </p>
+          </Card>
+        ))}
       </div>
 
-      <Accordion
-        items={[
-          {
-            title: "Multiple-Award Contracts: Discretion, Not Mandate",
-            content: (
-              <div>
-                <p>The Rule of Two no longer applies at the task/delivery order level under multiple-award contracts (MACs). Instead, contracting officers have discretionary authority to decide whether to set aside an order. This discretionary decision cannot serve as the basis for a bid protest.</p>
-                <p style={{ marginTop: 10 }}>This is a significant change — task and delivery orders represent a large and growing share of federal spending. Small businesses lose mandatory set-aside protection on this portion of the contracting landscape.</p>
-              </div>
-            ),
-          },
-          {
-            title: "8(a) Program Changes in FAR Part 19",
-            content: (
-              <div>
-                <p><strong style={{ color: COLORS.primaryDark }}>Competition before sole-source:</strong> Contracting officers must first attempt competitive 8(a) acquisitions using GWACs before pursuing sole-source awards, even below the competitive threshold.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>End of "Once 8(a), Always 8(a)":</strong> Follow-on requirements can be automatically released from the 8(a) program to be set aside for HUBZone, SDVOSB, or WOSB programs — without SBA approval or written notification to SBA. This is a major departure from longstanding practice.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Potential tension:</strong> Some of these FAR provisions may conflict with existing SBA regulations at 13 C.F.R. § 124.503(d)(1). SBA regulatory updates are still pending to reconcile inconsistencies.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Recertification Changes",
-            content: (
-              <div>
-                <p>Size and status will now be locked in at the contract level. The requirement for small businesses to re-represent their size at the task order level has been eliminated. Recertification is triggered only by contract-level events like option exercise, novation, or acquisition.</p>
-                <p style={{ marginTop: 10 }}>This may benefit small business incumbents but could limit opportunities for new small businesses to challenge incumbents' size at the order level. Note that SBA regulations at 13 C.F.R. §§ 125.12 and 121.404 still permit order-level recertification, creating a regulatory inconsistency agencies will need to navigate.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Removed Provisions Worth Noting",
-            content: (
-              <div>
-                <p>The overhaul removed several provisions that previously supported small business participation:</p>
-                <p style={{ marginTop: 10 }}>The detailed description of duties for Procurement Center Representatives (PCRs) and OSDBU offices was removed from the FAR, though these duties remain in SBA's regulations. The requirement that each agency with contracting authority establish an Office of Small and Disadvantaged Business Utilization was eliminated from FAR text (though contracting officers must still consider OSDBU recommendations). Several "equitable opportunity" actions that contracting officers "shall take" — including dividing acquisitions into reasonable small lots — were removed.</p>
-              </div>
-            ),
-          },
-        ]}
-      />
+      <Accordion items={d.details} />
     </div>
   );
 }
 
 function DOEEMSection() {
+  const d = CONTENT.doeEm;
   return (
     <div>
-      <SectionHeading
-        title="DOE Environmental Management"
-        subtitle="EM is the largest cleanup program in the world, with an ~$8.2 billion annual budget. Over 90% is contracted to industry, making it one of the richest contracting environments for small businesses in the federal government."
-      />
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 24 }}>
-        {[
-          { n: "40+", l: "Prime Contracts", s: "Across the EM complex" },
-          { n: "$90B+", l: "Total Contract Value", s: "Active portfolio" },
-          { n: "$5B+", l: "Annual Expenditures", s: "Through prime contractors" },
-          { n: "80%", l: "Through FMCs", s: "DOE-wide procurement" },
-        ].map((item) => (
-          <Card key={item.l} style={{ textAlign: "center", padding: "20px 16px" }}>
-            <StatBox number={item.n} label={item.l} sublabel={item.s} />
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: 16,
+          marginBottom: 24,
+        }}
+      >
+        {d.stats.map((s) => (
+          <Card key={s.label} style={{ textAlign: "center", padding: "20px 16px" }}>
+            <StatBox {...s} />
           </Card>
         ))}
       </div>
-
-      <Accordion
-        items={[
-          {
-            title: "How EM Contracting Works",
-            content: (
-              <div>
-                <p>DOE-EM uses the <strong style={{ color: COLORS.primaryDark }}>End State Contracting Model (ESCM)</strong> to accelerate cleanup. This involves qualifications-based, single-award IDIQ contracts followed by negotiated task orders (FFP or cost-reimbursement) for discrete scopes.</p>
-                <p style={{ marginTop: 10 }}>The <strong style={{ color: COLORS.primaryDark }}>EM Consolidated Business Center (EMCBC)</strong> centralizes major procurements. Awards are typically made to LLC teams of companies that then subcontract extensively. This is where small business subcontracting becomes critical — DOE flows down small business buying preferences to its prime contractors.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Unique to DOE:</strong> Under Section 318 of P.L. 113-76, first-tier subcontracts with small businesses count toward DOE's prime contracting goals on the SBA Scorecard. This makes subcontracting participation at DOE especially meaningful.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Current EM Procurement Activity (2025–2026)",
-            content: (
-              <div>
-                <p><strong style={{ color: COLORS.primaryDark }}>Portsmouth ISS:</strong> Final RFP issued January 14, 2026 for infrastructure support services. This is a total small business set-aside (NAICS 561210, $47M size standard). Hybrid contract with cost-plus award fee base, FFP transition CLIN, and IDIQ task orders. Five-year period of performance.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>EM Consolidated Technical Support Services:</strong> Awarded to Catawba TEAPEC LLC (8(a) joint venture) to support EM headquarters and field offices with technical support services.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Hanford Mentor-Protégé:</strong> Central Plateau Cleanup Company (CPCCo) recently partnered with Advetage Solutions and OLH Inc. through the DOE Mentor-Protégé Program, expanding small business presence at Hanford.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Paducah Site:</strong> EM issued a Request for Offer for AI data centers and energy projects at the Paducah site (November 2025) and an Expression of Interest for nickel reuse technology.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Getting Started with DOE-EM",
-            content: (
-              <div>
-                <p>Steps for small businesses interested in DOE-EM contracting:</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>1. Register on SAM.gov.</strong> This is free and required for all federal contracting. Report any request for payment as a scam.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>2. Check the DOE Acquisition Forecast.</strong> Updated monthly, it lists upcoming contracting and subcontracting opportunities across DOE headquarters, field offices, and FMC sites.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>3. Contact your Small Business Program Manager.</strong> DOE's SBPM Directory identifies contacts for each program office and site who can help you market your capabilities.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>4. Connect with your local PTAC and SBDC.</strong> Procurement Technical Assistance Centers and Small Business Development Centers offer free counseling on government contracting.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>5. Attend industry events.</strong> EMCBC and DOE-EM regularly participate in events like ETEBA conferences, WMS Business Opportunity Forums, and DOE small business expos. These are your best chance to make direct connections with procurement staff.</p>
-              </div>
-            ),
-          },
-          {
-            title: "DOE Mentor-Protégé Program — Key Distinctions",
-            content: (
-              <div>
-                <p><strong style={{ color: COLORS.primaryDark }}>Who administers it:</strong> DOE's Office of Small Business Programs (OSBP) at the Department level. Individual program offices like EM participate but do not administer the program.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>How it works:</strong> DOE prime contractors (mentors) partner with small businesses (protégés) to develop the protégé's capabilities. The relationship is formalized through a Mentor-Protégé Agreement approved by OSBP.</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Common misconception:</strong> There is no "mentor-protégé contract" as a distinct contract vehicle. M-P pairs work together through existing contracting mechanisms — prime/sub arrangements, joint ventures, teaming agreements, or subcontracting plans.</p>
-              </div>
-            ),
-          },
-        ]}
-      />
+      <Accordion items={d.topics} />
     </div>
   );
 }
 
 function LandscapeSection() {
-  const timeline = [
-    { date: "Jun 2025", event: "SBA launches first-ever 8(a) program audit", badge: "8(a)", color: COLORS.error },
-    { date: "Sep 26, 2025", event: "FAR Council releases Part 19 overhaul", badge: "FAR", color: COLORS.primary },
-    { date: "Oct 1, 2025", event: "FAC 2025-06 threshold changes take effect", badge: "Thresholds", color: COLORS.warning },
-    { date: "Nov 2025", event: "SBA clears 2,700 VetCert backlog", badge: "SDVOSB", color: COLORS.success },
-    { date: "Dec 5, 2025", event: "SBA orders data call to all 4,300 8(a) firms", badge: "8(a)", color: COLORS.error },
-    { date: "Jan 22, 2026", event: "SBA eliminates race-based presumption of social disadvantage", badge: "8(a)", color: COLORS.error },
-    { date: "Jan 28, 2026", event: "1,091 8(a) firms suspended for data call non-compliance", badge: "8(a)", color: COLORS.error },
-    { date: "Feb 11, 2026", event: "Termination proceedings for 154 D.C.-based 8(a) firms", badge: "8(a)", color: COLORS.error },
-    { date: "Mar 4, 2026", event: "Termination proceedings for 628 additional 8(a) firms", badge: "8(a)", color: COLORS.error },
-  ];
-
+  const d = CONTENT.landscape;
   return (
     <div>
-      <SectionHeading
-        title="The 2026 Policy Landscape"
-        subtitle="Small business contracting is undergoing a period of rapid and significant change. Here's a timeline of major developments and what to watch."
-      />
-
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
       <Card style={{ marginBottom: 24 }}>
-        <h3 style={{ color: COLORS.primaryDark, fontSize: 17, margin: "0 0 18px 0", fontFamily: "'Merriweather', Georgia, serif" }}>
+        <h3
+          style={{
+            color: COLORS.primaryDark,
+            fontSize: 17,
+            margin: "0 0 18px 0",
+            fontFamily: "'Merriweather', Georgia, serif",
+          }}
+        >
           Key Events Timeline
         </h3>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {timeline.map((t, i) => (
+          {d.timeline.map((t, i) => (
             <div
               key={i}
               style={{
                 display: "flex",
                 gap: 16,
                 padding: "14px 0",
-                borderBottom: i < timeline.length - 1 ? `1px solid ${COLORS.borderLight}` : "none",
+                borderBottom:
+                  i < d.timeline.length - 1 ? `1px solid ${COLORS.borderLight}` : "none",
                 alignItems: "flex-start",
               }}
             >
@@ -972,7 +870,7 @@ function LandscapeSection() {
                 {t.date}
               </div>
               <div style={{ flex: 1 }}>
-                <Badge color={t.color}>{t.badge}</Badge>
+                <Badge color={resolveColor(t.color)}>{t.badge}</Badge>
                 <div style={{ color: COLORS.text, fontSize: 14, marginTop: 6, lineHeight: 1.5 }}>
                   {t.event}
                 </div>
@@ -981,91 +879,19 @@ function LandscapeSection() {
           ))}
         </div>
       </Card>
-
-      <Accordion
-        items={[
-          {
-            title: "8(a) Program: What the Turbulence Means",
-            content: (
-              <div>
-                <p>The 8(a) program is shrinking rapidly. Only 65 new firms were admitted in 2025 (down from 2,100+ previously). The race-based presumption of social disadvantage has been eliminated. Applicants must now demonstrate disadvantage through specific, verifiable evidence of economic harm — documented financial barriers, credit access issues, or discriminatory treatment by governmental or non-governmental actors.</p>
-                <p style={{ marginTop: 10 }}>With termination proceedings initiated against roughly 20% of program participants and the SDB prime contracting goal returned to its 5% statutory floor, the practical value of 8(a) certification has diminished considerably. Firms relying on 8(a) sole-source awards should diversify their contracting strategy.</p>
-                <p style={{ marginTop: 10 }}>The OHA appeals process remains available (45-day filing deadline, 90-day decision target). Firms facing suspension or termination should consult legal counsel promptly.</p>
-              </div>
-            ),
-          },
-          {
-            title: "The Revolutionary FAR Overhaul — Broader Context",
-            content: (
-              <div>
-                <p>The FAR Part 19 rewrite is part of a much larger initiative. Phase I of the RFO concluded September 30, 2025, with rewrites of multiple FAR Parts. Phase II began October 1, continuing with additional Parts while Phase I revisions are implemented through agency class deviations.</p>
-                <p style={{ marginTop: 10 }}>The overarching goal is to reduce the FAR to statutory and "essential" provisions, simplify language, and remove redundant content. For small businesses, the net effect is mixed — administrative burden is reduced and core protections are preserved at the contract level, but order-level protections on multiple-award vehicles are weakened.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Watch List: Routes Around Small Businesses",
-            content: (
-              <div>
-                <p>As traditional small business pathways (especially 8(a) sole-source) narrow, be aware of mechanisms that can route work away from small businesses:</p>
-                <p style={{ marginTop: 10 }}><strong style={{ color: COLORS.primaryDark }}>Other Transaction Authorities (OTAs):</strong> Not subject to FAR, including small business provisions.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>Commercial Solutions Openings (CSOs):</strong> Competitive procedures outside the traditional FAR framework.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>SBIR Phase III:</strong> Can be awarded sole-source to Phase I/II awardees without competition or small business set-aside requirements.</p>
-                <p style={{ marginTop: 8 }}><strong style={{ color: COLORS.primaryDark }}>Limited-Source Justifications:</strong> Agencies may use bridge contracts or limited competition in ways that bypass set-aside requirements.</p>
-                <p style={{ marginTop: 10 }}>Small businesses and their advocates should monitor agency procurement patterns for increased use of these vehicles.</p>
-              </div>
-            ),
-          },
-          {
-            title: "Budget & Workforce Impacts",
-            content: (
-              <div>
-                <p>Proposed FY2026 federal budget reductions and government workforce restructuring (including DOGE-driven efficiency reviews) could affect the contracting landscape in several ways: reduced overall procurement spending, slower award timelines due to reduced acquisition workforce capacity, and potential consolidation of contract vehicles.</p>
-                <p style={{ marginTop: 10 }}>At DOE-EM specifically, proposed budget reductions could affect the pace and scope of cleanup work across the complex, which would ripple through to prime and subcontractor workload. Small businesses should track DOE-EM budget developments through Congressional appropriations activity.</p>
-              </div>
-            ),
-          },
-        ]}
-      />
+      <Accordion items={d.topics} />
     </div>
   );
 }
 
 function ResourcesSection() {
-  const links = [
-    { cat: "Registration & Certification", items: [
-      { name: "SAM.gov", desc: "System for Award Management — required for all federal contractors", url: "https://sam.gov" },
-      { name: "SBA Certifications", desc: "8(a), HUBZone, WOSB, SDVOSB certification portal", url: "https://certify.sba.gov" },
-      { name: "DSBS", desc: "Dynamic Small Business Search — market your capabilities", url: "https://dsbs.sba.gov" },
-    ]},
-    { cat: "DOE-Specific", items: [
-      { name: "DOE Acquisition Forecast", desc: "Monthly updated list of upcoming contracting opportunities", url: "https://energy.gov/osbp/acquisition-forecast" },
-      { name: "DOE OSBP", desc: "Office of Small Business Programs — Mentor-Protégé, resources", url: "https://energy.gov/osbp" },
-      { name: "DOE-EM Acquisition News", desc: "Current procurement announcements from Environmental Management", url: "https://energy.gov/em/listings/acquisition-news" },
-      { name: "SBPM Directory", desc: "Small Business Program Manager contacts by office and site", url: "https://energy.gov/osbp" },
-    ]},
-    { cat: "Regulations & Policy", items: [
-      { name: "FAR Part 19 (Current)", desc: "Acquisition.gov — official FAR text", url: "https://acquisition.gov/far/part-19" },
-      { name: "13 C.F.R. Part 124", desc: "SBA regulations for 8(a) Business Development Program", url: "https://ecfr.gov" },
-      { name: "SBA Procurement Scorecard", desc: "Annual agency performance against small business goals", url: "https://sba.gov/federal-contracting/contracting-data/small-business-procurement-scorecard" },
-    ]},
-    { cat: "Free Assistance", items: [
-      { name: "PTAC Locator", desc: "Find your nearest Procurement Technical Assistance Center", url: "https://aptac-us.org" },
-      { name: "SBDC Locator", desc: "Find your nearest Small Business Development Center", url: "https://sba.gov/tools/local-assistance/sbdc" },
-      { name: "SBA Learning Platform", desc: "Free online courses on government contracting basics", url: "https://sba.gov/learning-center" },
-    ]},
-  ];
-
+  const d = CONTENT.resources;
   return (
     <div>
-      <SectionHeading
-        title="Resources & Quick Links"
-        subtitle="Essential websites, tools, and points of contact for small businesses navigating federal contracting."
-      />
-
+      <SectionHeading title={d.heading} subtitle={d.subtitle} />
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        {links.map((cat) => (
-          <Card key={cat.cat}>
+        {d.categories.map((cat) => (
+          <Card key={cat.name}>
             <h3
               style={{
                 color: COLORS.primaryDark,
@@ -1074,10 +900,10 @@ function ResourcesSection() {
                 fontFamily: "'Merriweather', Georgia, serif",
               }}
             >
-              {cat.cat}
+              {cat.name}
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {cat.items.map((item) => (
+              {cat.links.map((item) => (
                 <a
                   key={item.name}
                   href={item.url}
@@ -1092,12 +918,8 @@ function ResourcesSection() {
                     transition: "background 0.15s",
                     borderLeft: `4px solid ${COLORS.primary}`,
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = COLORS.primaryPale)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = COLORS.bgLight)
-                  }
+                  onMouseEnter={(e) => (e.currentTarget.style.background = COLORS.primaryPale)}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = COLORS.bgLight)}
                 >
                   <div style={{ color: COLORS.primary, fontWeight: 700, fontSize: 14 }}>
                     {item.name} →
@@ -1112,9 +934,15 @@ function ResourcesSection() {
         ))}
       </div>
 
-      <Card style={{ marginTop: 24, background: COLORS.primaryPale, border: `1px solid ${COLORS.primaryLighter}` }}>
+      <Card
+        style={{
+          marginTop: 24,
+          background: COLORS.primaryPale,
+          border: `1px solid ${COLORS.primaryLighter}`,
+        }}
+      >
         <p style={{ color: COLORS.text, fontSize: 14, lineHeight: 1.7, margin: 0, textAlign: "center" }}>
-          This guide is maintained as a practitioner reference and reflects the author's professional understanding of current regulations, policy, and practice. It is not legal advice. Consult qualified counsel for specific contracting decisions. Regulatory citations are current as of March 2026 — always verify against the latest published text.
+          {CONTENT.meta.disclaimer}
         </p>
       </Card>
     </div>
@@ -1122,6 +950,16 @@ function ResourcesSection() {
 }
 
 // ─── Main App ───
+
+const SECTION_COMPONENTS = {
+  home: HomeSection,
+  foundations: FoundationsSection,
+  programs: ProgramsSection,
+  far19: FAR19Section,
+  "doe-em": DOEEMSection,
+  landscape: LandscapeSection,
+  resources: ResourcesSection,
+};
 
 export default function App() {
   const [section, setSection] = useState("home");
@@ -1135,18 +973,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const renderSection = () => {
-    switch (section) {
-      case "home": return <HomeSection onNav={handleNav} />;
-      case "foundations": return <FoundationsSection />;
-      case "programs": return <ProgramsSection />;
-      case "far19": return <FAR19Section />;
-      case "doe-em": return <DOEEMSection />;
-      case "landscape": return <LandscapeSection />;
-      case "resources": return <ResourcesSection />;
-      default: return <HomeSection onNav={handleNav} />;
-    }
-  };
+  const SectionComponent = SECTION_COMPONENTS[section] || HomeSection;
 
   return (
     <div
@@ -1161,7 +988,7 @@ export default function App() {
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;700&display=swap"
         rel="stylesheet"
       />
-      <NavBar active={section} onNav={handleNav} />
+      <NavBar sections={CONTENT.sections} active={section} onNav={handleNav} />
       <main
         ref={mainRef}
         style={{
@@ -1170,7 +997,7 @@ export default function App() {
           padding: "32px 24px 60px",
         }}
       >
-        {renderSection()}
+        <SectionComponent onNav={handleNav} />
       </main>
       <footer
         style={{
@@ -1181,8 +1008,10 @@ export default function App() {
           fontSize: 14,
         }}
       >
-        <div style={{ color: COLORS.white, fontWeight: 700, marginBottom: 4 }}>Federal Small Business Contracting Guide</div>
-        <div>Practitioner Reference — Content current as of March 2026</div>
+        <div style={{ color: COLORS.white, fontWeight: 700, marginBottom: 4 }}>
+          {CONTENT.meta.footerLine1}
+        </div>
+        <div>{CONTENT.meta.footerLine2}</div>
       </footer>
     </div>
   );
