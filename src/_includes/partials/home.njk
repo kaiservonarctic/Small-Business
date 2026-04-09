@@ -1,0 +1,22 @@
+<section id="home" class="hero">
+  <div class="container">
+    <span class="badge badge--blue">{{ site.home.badgeText }}</span>
+    <h1 class="hero-headline">{{ site.home.headline }}</h1>
+    <p class="hero-subtitle">{{ site.home.subtitle }}</p>
+    <p class="hero-update">{{ site.home.updateNote | md | safe }}</p>
+
+    <div class="stats-grid">
+      {% for stat in site.home.stats %}
+      <div class="stat-card">
+        <div class="stat-number">{{ stat.number }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+        <div class="stat-sublabel">{{ stat.sublabel }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="disclaimer">
+      <p>{{ site.meta.disclaimer }}</p>
+    </div>
+  </div>
+</section>
