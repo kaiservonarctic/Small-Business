@@ -1,11 +1,306 @@
 media: media
+
 content:
-  - name: pages
-    label: Pages
-    type: collection
-    path: docs
+  # ─── Site Metadata ───
+  - name: meta
+    label: Site Settings
+    type: file
+    path: content.json
     fields:
-      - name: title
+      - name: meta.siteTitle
+        label: Site Title
         type: string
-      - name: body
-        type: rich-text
+      - name: meta.lastUpdated
+        label: Last Updated
+        type: string
+      - name: meta.disclaimer
+        label: Disclaimer
+        type: text
+      - name: meta.footerLine1
+        label: Footer Line 1
+        type: string
+      - name: meta.footerLine2
+        label: Footer Line 2
+        type: string
+
+  # ─── Navigation ───
+  - name: sections
+    label: Navigation
+    type: file
+    path: content.json
+    fields:
+      - name: sections
+        label: Nav Sections
+        type: object[]
+        fields:
+          - name: id
+            label: ID (used in URL hash)
+            type: string
+          - name: label
+            label: Display Label
+            type: string
+
+  # ─── Home Page ───
+  - name: home
+    label: Home Page
+    type: file
+    path: content.json
+    fields:
+      - name: home.badgeText
+        label: Badge Text
+        type: string
+      - name: home.headline
+        label: Headline
+        type: string
+      - name: home.subtitle
+        label: Subtitle
+        type: text
+      - name: home.updateNote
+        label: Update Note
+        type: text
+      - name: home.stats
+        label: Stats
+        type: object[]
+        fields:
+          - name: number
+            label: Number
+            type: string
+          - name: label
+            label: Label
+            type: string
+          - name: sublabel
+            label: Sub-label
+            type: string
+
+  # ─── Foundations ───
+  - name: foundations
+    label: Foundations
+    type: file
+    path: content.json
+    fields:
+      - name: foundations.heading
+        label: Section Heading
+        type: string
+      - name: foundations.subtitle
+        label: Section Subtitle
+        type: text
+      - name: foundations.intro.title
+        label: Intro Title
+        type: string
+      - name: foundations.intro.body
+        label: Intro Body
+        type: text
+      - name: foundations.topics
+        label: Topics
+        type: object[]
+        fields:
+          - name: title
+            label: Topic Title
+            type: string
+          - name: paragraphs
+            label: Paragraphs
+            type: string[]
+          - name: thresholds
+            label: Thresholds (optional, for threshold topics only)
+            type: object[]
+            fields:
+              - name: label
+                label: Threshold Name
+                type: string
+              - name: value
+                label: Threshold Value
+                type: string
+
+  # ─── Statutes & Regulations ───
+  - name: statutes
+    label: Statutes & Regs
+    type: file
+    path: content.json
+    fields:
+      - name: statutes.heading
+        label: Section Heading
+        type: string
+      - name: statutes.subtitle
+        label: Section Subtitle
+        type: text
+      - name: statutes.intro.title
+        label: Intro Title
+        type: string
+      - name: statutes.intro.body
+        label: Intro Body
+        type: text
+      - name: statutes.topics
+        label: Topics
+        type: object[]
+        fields:
+          - name: title
+            label: Topic Title
+            type: string
+          - name: paragraphs
+            label: Paragraphs
+            type: string[]
+
+  # ─── SBA Programs ───
+  - name: programs
+    label: SBA Programs
+    type: file
+    path: content.json
+    fields:
+      - name: programs.heading
+        label: Section Heading
+        type: string
+      - name: programs.subtitle
+        label: Section Subtitle
+        type: text
+      - name: programs.items
+        label: Programs
+        type: object[]
+        fields:
+          - name: name
+            label: Program Name
+            type: string
+          - name: statute
+            label: Statute
+            type: string
+          - name: regs
+            label: Regulations
+            type: string
+          - name: status
+            label: Status Label
+            type: string
+          - name: statusColor
+            label: Status Color
+            type: select
+            options:
+              - label: Red
+                value: red
+              - label: Green
+                value: green
+              - label: Yellow
+                value: yellow
+          - name: description
+            label: Description
+            type: text
+          - name: current
+            label: Current Status
+            type: text
+
+  # ─── FAR Provisions ───
+  - name: far19
+    label: FAR Provisions
+    type: file
+    path: content.json
+    fields:
+      - name: far19.heading
+        label: Section Heading
+        type: string
+      - name: far19.subtitle
+        label: Section Subtitle
+        type: text
+      - name: far19.alert.title
+        label: Alert Title
+        type: string
+      - name: far19.alert.body
+        label: Alert Body
+        type: text
+      - name: far19.highlights
+        label: Highlights
+        type: object[]
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: body
+            label: Body
+            type: text
+      - name: far19.details
+        label: Detail Sections
+        type: object[]
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: paragraphs
+            label: Paragraphs
+            type: string[]
+
+  # ─── History ───
+  - name: history
+    label: History
+    type: file
+    path: content.json
+    fields:
+      - name: history.heading
+        label: Section Heading
+        type: string
+      - name: history.subtitle
+        label: Section Subtitle
+        type: text
+      - name: history.timeline
+        label: Timeline Events
+        type: object[]
+        fields:
+          - name: date
+            label: Date
+            type: string
+          - name: event
+            label: Event Description
+            type: text
+          - name: badge
+            label: Badge Label
+            type: string
+          - name: color
+            label: Color
+            type: select
+            options:
+              - label: Blue
+                value: blue
+              - label: Red
+                value: red
+              - label: Yellow
+                value: yellow
+              - label: Green
+                value: green
+      - name: history.topics
+        label: History Topics
+        type: object[]
+        fields:
+          - name: title
+            label: Topic Title
+            type: string
+          - name: paragraphs
+            label: Paragraphs
+            type: string[]
+
+  # ─── Resources ───
+  - name: resources
+    label: Resources
+    type: file
+    path: content.json
+    fields:
+      - name: resources.heading
+        label: Section Heading
+        type: string
+      - name: resources.subtitle
+        label: Section Subtitle
+        type: text
+      - name: resources.categories
+        label: Resource Categories
+        type: object[]
+        fields:
+          - name: name
+            label: Category Name
+            type: string
+          - name: links
+            label: Links
+            type: object[]
+            fields:
+              - name: name
+                label: Link Name
+                type: string
+              - name: desc
+                label: Description
+                type: string
+              - name: url
+                label: URL
+                type: string
