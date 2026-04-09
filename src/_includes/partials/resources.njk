@@ -1,0 +1,20 @@
+<section id="resources" class="section section--alt">
+  <div class="container">
+    <h2 class="section-heading">{{ site.resources.heading }}</h2>
+    <p class="section-subtitle">{{ site.resources.subtitle }}</p>
+
+    {% for cat in site.resources.categories %}
+    <div class="resource-category">
+      <h3 class="resource-category-name">{{ cat.name }}</h3>
+      <div class="resource-links">
+        {% for link in cat.links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener" class="resource-card">
+          <strong>{{ link.name }}</strong>
+          <span>{{ link.desc }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

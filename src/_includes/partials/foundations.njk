@@ -1,0 +1,38 @@
+<section id="foundations" class="section">
+  <div class="container">
+    <h2 class="section-heading">{{ site.foundations.heading }}</h2>
+    <p class="section-subtitle">{{ site.foundations.subtitle }}</p>
+
+    {% if site.foundations.intro %}
+    <div class="intro-card">
+      <h3>{{ site.foundations.intro.title }}</h3>
+      <p>{{ site.foundations.intro.body | md | safe }}</p>
+    </div>
+    {% endif %}
+
+    {% for topic in site.foundations.topics %}
+    <details class="accordion">
+      <summary class="accordion-header">{{ topic.title }}</summary>
+      <div class="accordion-body">
+        {% if topic.paragraphs %}
+          {% for p in topic.paragraphs %}
+          <p>{{ p | md | safe }}</p>
+          {% endfor %}
+        {% endif %}
+        {% if topic.thresholds %}
+        <table class="threshold-table">
+          <thead>
+            <tr><th>Threshold</th><th>Amount</th></tr>
+          </thead>
+          <tbody>
+            {% for t in topic.thresholds %}
+            <tr><td>{{ t.label }}</td><td class="threshold-value">{{ t.value }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section id="far19" class="section section--alt">
+  <div class="container">
+    <h2 class="section-heading">{{ site.far19.heading }}</h2>
+    <p class="section-subtitle">{{ site.far19.subtitle }}</p>
+
+    {% if site.far19.alert %}
+    <div class="alert">
+      <strong>{{ site.far19.alert.title }}</strong>
+      <p>{{ site.far19.alert.body | md | safe }}</p>
+    </div>
+    {% endif %}
+
+    {% if site.far19.highlights %}
+    <div class="highlights-grid">
+      {% for h in site.far19.highlights %}
+      <div class="highlight-card">
+        <h3>{{ h.title }}</h3>
+        <p>{{ h.body | md | safe }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for detail in site.far19.details %}
+    <details class="accordion">
+      <summary class="accordion-header">{{ detail.title }}</summary>
+      <div class="accordion-body">
+        {% for p in detail.paragraphs %}
+        <p>{{ p | md | safe }}</p>
+        {% endfor %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</section>

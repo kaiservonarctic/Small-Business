@@ -1,0 +1,25 @@
+<section id="programs" class="section">
+  <div class="container">
+    <h2 class="section-heading">{{ site.programs.heading }}</h2>
+    <p class="section-subtitle">{{ site.programs.subtitle }}</p>
+
+    <div class="card-grid">
+      {% for item in site.programs.items %}
+      <div class="program-card">
+        <div class="program-header">
+          <h3 class="program-name">{{ item.name }}</h3>
+          <span class="badge {{ item.statusColor | statusClass }}">{{ item.status }}</span>
+        </div>
+        <div class="program-meta">
+          <span class="meta-item">{{ item.statute }}</span>
+          <span class="meta-item">{{ item.regs }}</span>
+        </div>
+        <p class="program-desc">{{ item.description | md | safe }}</p>
+        <div class="program-current">
+          <strong>Current status:</strong> {{ item.current | md | safe }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
