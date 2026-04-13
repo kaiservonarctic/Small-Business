@@ -56,7 +56,6 @@ content:
         type: text
       - name: stats
         label: Stats
-        type: string
         list: true
         fields:
           - name: number
@@ -92,7 +91,6 @@ content:
             type: text
       - name: topics
         label: Topics
-        type: string
         list: true
         fields:
           - name: title
@@ -104,7 +102,6 @@ content:
             list: true
           - name: thresholds
             label: Thresholds (for threshold topics only)
-            type: string
             list: true
             fields:
               - name: label
@@ -137,7 +134,6 @@ content:
             type: text
       - name: topics
         label: Topics
-        type: string
         list: true
         fields:
           - name: title
@@ -162,7 +158,6 @@ content:
         type: text
       - name: items
         label: Programs
-        type: string
         list: true
         fields:
           - name: name
@@ -217,7 +212,6 @@ content:
             type: text
       - name: highlights
         label: Highlights
-        type: string
         list: true
         fields:
           - name: title
@@ -228,7 +222,6 @@ content:
             type: text
       - name: details
         label: Detail Sections
-        type: string
         list: true
         fields:
           - name: title
@@ -253,7 +246,6 @@ content:
         type: text
       - name: timeline
         label: Timeline Events
-        type: string
         list: true
         fields:
           - name: date
@@ -279,7 +271,6 @@ content:
                 value: green
       - name: topics
         label: History Topics
-        type: string
         list: true
         fields:
           - name: title
@@ -304,7 +295,6 @@ content:
         type: text
       - name: categories
         label: Resource Categories
-        type: string
         list: true
         fields:
           - name: name
@@ -312,7 +302,6 @@ content:
             type: string
           - name: links
             label: Links
-            type: string
             list: true
             fields:
               - name: name
