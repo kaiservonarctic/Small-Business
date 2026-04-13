@@ -56,7 +56,8 @@ content:
         type: text
       - name: stats
         label: Stats
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: number
             label: Number
@@ -82,7 +83,6 @@ content:
         type: text
       - name: intro
         label: Introduction
-        type: object
         fields:
           - name: title
             label: Intro Title
@@ -92,17 +92,20 @@ content:
             type: text
       - name: topics
         label: Topics
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: title
             label: Topic Title
             type: string
           - name: paragraphs
             label: Paragraphs
-            type: string[]
+            type: string
+            list: true
           - name: thresholds
             label: Thresholds (for threshold topics only)
-            type: object[]
+            type: string
+            list: true
             fields:
               - name: label
                 label: Threshold Name
@@ -125,7 +128,6 @@ content:
         type: text
       - name: intro
         label: Introduction
-        type: object
         fields:
           - name: title
             label: Intro Title
@@ -135,14 +137,16 @@ content:
             type: text
       - name: topics
         label: Topics
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: title
             label: Topic Title
             type: string
           - name: paragraphs
             label: Paragraphs
-            type: string[]
+            type: string
+            list: true
 
   # ─── SBA Programs ───
   - name: programs
@@ -158,7 +162,8 @@ content:
         type: text
       - name: items
         label: Programs
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: name
             label: Program Name
@@ -203,7 +208,6 @@ content:
         type: text
       - name: alert
         label: Alert Box
-        type: object
         fields:
           - name: title
             label: Alert Title
@@ -213,7 +217,8 @@ content:
             type: text
       - name: highlights
         label: Highlights
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: title
             label: Title
@@ -223,14 +228,16 @@ content:
             type: text
       - name: details
         label: Detail Sections
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: title
             label: Title
             type: string
           - name: paragraphs
             label: Paragraphs
-            type: string[]
+            type: string
+            list: true
 
   # ─── History ───
   - name: history
@@ -246,7 +253,8 @@ content:
         type: text
       - name: timeline
         label: Timeline Events
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: date
             label: Date
@@ -271,14 +279,16 @@ content:
                 value: green
       - name: topics
         label: History Topics
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: title
             label: Topic Title
             type: string
           - name: paragraphs
             label: Paragraphs
-            type: string[]
+            type: string
+            list: true
 
   # ─── Resources ───
   - name: resources
@@ -294,14 +304,16 @@ content:
         type: text
       - name: categories
         label: Resource Categories
-        type: object[]
+        type: string
+        list: true
         fields:
           - name: name
             label: Category Name
             type: string
           - name: links
             label: Links
-            type: object[]
+            type: string
+            list: true
             fields:
               - name: name
                 label: Link Name
