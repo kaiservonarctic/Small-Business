@@ -1,16 +1,16 @@
 <section id="foundations" class="section">
   <div class="container">
-    <h2 class="section-heading">{{ site.foundations.heading }}</h2>
-    <p class="section-subtitle">{{ site.foundations.subtitle }}</p>
+    <h2 class="section-heading">{{ foundations.heading }}</h2>
+    <p class="section-subtitle">{{ foundations.subtitle }}</p>
 
-    {% if site.foundations.intro %}
+    {% if foundations.intro %}
     <div class="intro-card">
-      <h3>{{ site.foundations.intro.title }}</h3>
-      <p>{{ site.foundations.intro.body | md | safe }}</p>
+      <h3>{{ foundations.intro.title }}</h3>
+      <p>{{ foundations.intro.body | md | safe }}</p>
     </div>
     {% endif %}
 
-    {% for topic in site.foundations.topics %}
+    {% for topic in foundations.topics %}
     <details class="accordion">
       <summary class="accordion-header">{{ topic.title }}</summary>
       <div class="accordion-body">

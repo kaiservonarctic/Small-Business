@@ -1,0 +1,30 @@
+[
+  {
+    "id": "home",
+    "label": "Home"
+  },
+  {
+    "id": "foundations",
+    "label": "Foundations"
+  },
+  {
+    "id": "statutes",
+    "label": "Statutes & Regs"
+  },
+  {
+    "id": "programs",
+    "label": "SBA Programs"
+  },
+  {
+    "id": "far19",
+    "label": "FAR Provisions"
+  },
+  {
+    "id": "history",
+    "label": "History"
+  },
+  {
+    "id": "resources",
+    "label": "Resources"
+  }
+]

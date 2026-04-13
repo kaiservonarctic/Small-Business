@@ -1,18 +1,18 @@
 <section id="far19" class="section section--alt">
   <div class="container">
-    <h2 class="section-heading">{{ site.far19.heading }}</h2>
-    <p class="section-subtitle">{{ site.far19.subtitle }}</p>
+    <h2 class="section-heading">{{ far19.heading }}</h2>
+    <p class="section-subtitle">{{ far19.subtitle }}</p>
 
-    {% if site.far19.alert %}
+    {% if far19.alert %}
     <div class="alert">
-      <strong>{{ site.far19.alert.title }}</strong>
-      <p>{{ site.far19.alert.body | md | safe }}</p>
+      <strong>{{ far19.alert.title }}</strong>
+      <p>{{ far19.alert.body | md | safe }}</p>
     </div>
     {% endif %}
 
-    {% if site.far19.highlights %}
+    {% if far19.highlights %}
     <div class="highlights-grid">
-      {% for h in site.far19.highlights %}
+      {% for h in far19.highlights %}
       <div class="highlight-card">
         <h3>{{ h.title }}</h3>
         <p>{{ h.body | md | safe }}</p>
@@ -21,7 +21,7 @@
     </div>
     {% endif %}
 
-    {% for detail in site.far19.details %}
+    {% for detail in far19.details %}
     <details class="accordion">
       <summary class="accordion-header">{{ detail.title }}</summary>
       <div class="accordion-body">

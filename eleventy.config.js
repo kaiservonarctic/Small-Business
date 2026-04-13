@@ -1,10 +1,8 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
 
-  // Make content.json available as global data at `content`
-  eleventyConfig.addGlobalData("site", () => {
-    return require("./content.json");
-  });
+  // Data files in src/_data/ are auto-loaded by Eleventy:
+  // meta.json → {{ meta.siteTitle }}, home.json → {{ home.headline }}, etc.
 
   // Markdown-lite filter: **bold** and *italic*
   eleventyConfig.addFilter("md", function (str) {

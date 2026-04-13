@@ -13,7 +13,7 @@ Each type of change uses a different tool, but both follow the same basic princi
 
 **Tool:** Pages CMS (a web-based editor)
 
-All of the website's text lives in a single file called `content.json`. Pages CMS gives you a friendly form-based editor so you never have to open that file directly.
+All of the website's text lives in JSON data files inside the `src/_data/` folder — one file per section (e.g., `home.json`, `programs.json`, `resources.json`). Pages CMS gives you a friendly form-based editor so you never have to open those files directly.
 
 ### Getting started
 
@@ -29,7 +29,7 @@ All of the website's text lives in a single file called `content.json`. Pages CM
 2. Find the field labeled **Last Updated**.
 3. Change the text from "April 2026" to whatever the current date is.
 4. Click **Save** at the top of the page.
-5. Pages CMS will save your change to GitHub. Netlify detects the change and rebuilds the site. Your update will be live within about a minute.
+5. Pages CMS will save your change to the corresponding data file on GitHub (in this case, `src/_data/meta.json`). Netlify detects the change and rebuilds the site. Your update will be live within about a minute.
 
 **Example: Editing a topic in the Foundations section**
 
@@ -160,7 +160,7 @@ in Pages CMS        or   in css/style.css on GitHub
        |                         |
        v                         v
   Pages CMS saves          You commit the
-  to content.json          change on GitHub
+  to src/_data/*.json      change on GitHub
        |                         |
        +------------+------------+
                     |
@@ -172,7 +172,7 @@ in Pages CMS        or   in css/style.css on GitHub
                     |
                     v
           Eleventy builds fresh HTML pages
-          from content.json + templates + CSS
+          from data files + templates + CSS
                     |
                     v
           Updated website is live

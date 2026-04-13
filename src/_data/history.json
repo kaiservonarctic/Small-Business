@@ -1,0 +1,148 @@
+{
+  "heading": "History of Federal Small Business Contracting",
+  "subtitle": "Understanding where the system came from helps explain why it works the way it does — and where it may be headed.",
+  "timeline": [
+    {
+      "date": "1953",
+      "event": "Small Business Act enacted (P.L. 83-163); SBA created",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1958",
+      "event": "Small Business Act Amendments make SBA permanent",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1968",
+      "event": "SBA first uses Section 8(a) authority under President Johnson's Test Cities Program",
+      "badge": "8(a)",
+      "color": "yellow"
+    },
+    {
+      "date": "1978",
+      "event": "P.L. 95-507 codifies 8(a) program, creates subcontracting requirements, establishes OSDBU offices",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1984",
+      "event": "Competition in Contracting Act (CICA) establishes full and open competition framework",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1986",
+      "event": "SBA regulations create rebuttable presumption of social disadvantage for designated racial groups",
+      "badge": "8(a)",
+      "color": "yellow"
+    },
+    {
+      "date": "1988",
+      "event": "Business Opportunity Development Reform Act (P.L. 100-656) — establishes government-wide SB goals, reforms 8(a) program, adds nine-year term limit",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1994",
+      "event": "Federal Acquisition Streamlining Act (FASA) establishes WOSB contracting goal",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1997",
+      "event": "HUBZone Act of 1997 (P.L. 105-135) creates HUBZone program with 3% goal",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "1999",
+      "event": "Veterans Entrepreneurship Act (P.L. 106-50) creates SDVOSB goal",
+      "badge": "Statute",
+      "color": "blue"
+    },
+    {
+      "date": "2010",
+      "event": "WOSB Federal Contracting Program authorized for set-asides and sole-source",
+      "badge": "WOSB",
+      "color": "green"
+    },
+    {
+      "date": "Jul 2023",
+      "event": "Ultima Services Corp. v. USDA — court finds 8(a) rebuttable presumption unconstitutional",
+      "badge": "8(a)",
+      "color": "red"
+    },
+    {
+      "date": "Sep 2025",
+      "event": "FAR Council releases Part 19 overhaul as part of the Revolutionary FAR Overhaul",
+      "badge": "FAR",
+      "color": "blue"
+    },
+    {
+      "date": "Oct 2025",
+      "event": "FAC 2025-06 threshold changes take effect",
+      "badge": "Thresholds",
+      "color": "yellow"
+    },
+    {
+      "date": "Jan 2026",
+      "event": "SBA eliminates race-based presumption; suspends 1,091 8(a) firms",
+      "badge": "8(a)",
+      "color": "red"
+    },
+    {
+      "date": "Mar 2026",
+      "event": "SBA initiates termination proceedings against ~800 8(a) firms total",
+      "badge": "8(a)",
+      "color": "red"
+    }
+  ],
+  "topics": [
+    {
+      "title": "Origins: The Small Business Act of 1953",
+      "paragraphs": [
+        "The story begins in the aftermath of World War II and the Korean War. The federal government had relied heavily on large industrial firms for wartime production, and concerns grew that small businesses were being squeezed out of the procurement system. The Reconstruction Finance Corporation (RFC) had attempted to support small businesses but became mired in corruption allegations.",
+        "On July 30, 1953, President Eisenhower signed the Small Business Act (P.L. 83-163), creating the SBA as an independent agency with a mission to \"aid, counsel, assist and protect\" small businesses. The Act was originally conceived as temporary, but the 1958 Amendments made SBA permanent and codified the Act as standalone legislation.",
+        "The Act's declaration of policy remains the bedrock: the preservation of free competitive enterprise requires that small businesses receive a \"fair proportion\" of government contracts. This language has driven every subsequent expansion of the small business contracting framework."
+      ]
+    },
+    {
+      "title": "The 8(a) Program and the Era of Social Policy (1960s–1980s)",
+      "paragraphs": [
+        "Section 8(a) of the Small Business Act, originally a general procurement assistance provision, was pressed into service as a tool for addressing racial inequality following the civil unrest of the 1960s. In 1968, the SBA first used its 8(a) authority under President Johnson's Test Cities Program to channel contracts to minority-owned businesses.",
+        "The 1978 amendments (P.L. 95-507) were transformative: they codified the 8(a) program with explicit statutory authority, required agencies to establish subcontracting goals for small businesses, and mandated the creation of Offices of Small and Disadvantaged Business Utilization (OSDBUs) at each agency.",
+        "By 1986, SBA regulations had established the rebuttable presumption that members of designated racial groups were \"socially disadvantaged\" — a presumption that would shape the program for nearly four decades before being found unconstitutional in 2023.",
+        "The Business Opportunity Development Reform Act of 1988 (P.L. 100-656) imposed the nine-year participation term still in effect today, established the government-wide contracting goals structure, and attempted to address concerns that firms were becoming dependent on sole-source 8(a) contracts without developing competitive capabilities."
+      ]
+    },
+    {
+      "title": "Expansion of Socioeconomic Programs (1990s–2000s)",
+      "paragraphs": [
+        "The 1990s and 2000s saw Congress create additional socioeconomic contracting programs, each with its own statutory goal:",
+        "**1994:** The Federal Acquisition Streamlining Act (P.L. 103-355) established the 5% WOSB contracting goal.",
+        "**1997:** The HUBZone Act (P.L. 105-135) created the HUBZone program — the only place-based contracting program — with a 3% goal. Senator Kit Bond framed it as a jobs and welfare-to-work bill targeting economically distressed areas.",
+        "**1999:** The Veterans Entrepreneurship Act (P.L. 106-50) established a 3% government-wide goal for SDVOSBs, later increased to 5% by the FY2024 NDAA.",
+        "**2010:** The WOSB Federal Contracting Program was finally implemented with authority for set-asides and sole-source awards in underrepresented industries, more than 15 years after the statutory goal was established."
+      ]
+    },
+    {
+      "title": "Constitutional Challenge and the Ultima Decision (2023)",
+      "paragraphs": [
+        "On July 19, 2023, in Ultima Services Corp. v. U.S. Department of Agriculture, the U.S. District Court for the Eastern District of Tennessee held that SBA's use of the rebuttable presumption of social disadvantage in the 8(a) program violated the Fifth Amendment's equal protection guarantee. The case was brought by a white woman-owned small business that lost contracts when USDA moved them into the 8(a) program.",
+        "The court applied strict scrutiny — the same standard the Supreme Court used in Students for Fair Admissions v. Harvard (2023) — and found the government failed both prongs: it could not establish a compelling interest tied to specific identified instances of discrimination, and the presumption was not narrowly tailored.",
+        "Critically, the court did not hold that the 8(a) program itself is unconstitutional — only that SBA could not use race-based presumptions to determine social disadvantage. The program remains operational, but all applicants must now demonstrate social disadvantage through individualized, evidence-based narratives."
+      ]
+    },
+    {
+      "title": "The Revolutionary FAR Overhaul and Current Turbulence (2025–2026)",
+      "paragraphs": [
+        "The current period represents the most significant simultaneous disruption to small business contracting since the 1988 reforms. On September 26, 2025, the FAR Council released the overhauled Part 19, preserving the Rule of Two at the contract level but making order-level set-asides discretionary — shifting significant contracting volume outside mandatory small business protections.",
+        "Simultaneously, the 8(a) program has been reshaped by SBA enforcement actions: the first-ever program audit (June 2025), a data call to all 4,300 participants (December 2025), suspension of over 1,000 firms (January 2026), and termination proceedings against nearly 800 firms (February–March 2026). New admissions collapsed to 65 firms in 2025.",
+        "The SDB prime contracting goal returned to its 5% statutory floor after the Trump Administration rescinded EO 14091. The SDVOSB goal was increased to 5% by the FY2024 NDAA. And the FAR overhaul introduced changes to recertification, follow-on 8(a) contracts, and sole-source procedures that are still being reconciled with SBA regulations.",
+        "For small businesses, the practical message is clear: diversify across programs and contract vehicles, maintain impeccable documentation, track agency-specific implementation of the FAR overhaul, and do not rely on any single pathway — especially 8(a) sole-source — as the foundation of a contracting strategy."
+      ]
+    }
+  ]
+}

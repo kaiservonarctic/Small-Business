@@ -1,0 +1,101 @@
+{
+  "heading": "Resources & Quick Links",
+  "subtitle": "Essential websites, tools, and points of contact for small businesses navigating federal contracting.",
+  "categories": [
+    {
+      "name": "Registration & Certification",
+      "links": [
+        {
+          "name": "SAM.gov",
+          "desc": "System for Award Management — required for all federal contractors",
+          "url": "https://sam.gov"
+        },
+        {
+          "name": "SBA Certifications",
+          "desc": "8(a), HUBZone, WOSB, SDVOSB certification portal",
+          "url": "https://certify.sba.gov"
+        },
+        {
+          "name": "DSBS",
+          "desc": "Dynamic Small Business Search — market your capabilities",
+          "url": "https://dsbs.sba.gov"
+        }
+      ]
+    },
+    {
+      "name": "Regulations & Policy",
+      "links": [
+        {
+          "name": "FAR Part 19 (Current)",
+          "desc": "Acquisition.gov — official FAR text",
+          "url": "https://acquisition.gov/far/part-19"
+        },
+        {
+          "name": "13 C.F.R. Parts 121–134",
+          "desc": "SBA regulations on eCFR — size standards, programs, OHA rules",
+          "url": "https://ecfr.gov"
+        },
+        {
+          "name": "SBA Procurement Scorecard",
+          "desc": "Annual agency performance against small business goals",
+          "url": "https://sba.gov/federal-contracting/contracting-data/small-business-procurement-scorecard"
+        },
+        {
+          "name": "FAR Overhaul Resources",
+          "desc": "Deviation guides and practitioner albums from the FAR Council",
+          "url": "https://acquisition.gov"
+        }
+      ]
+    },
+    {
+      "name": "Opportunity Identification",
+      "links": [
+        {
+          "name": "SAM.gov Contract Opportunities",
+          "desc": "Search active federal solicitations and awards",
+          "url": "https://sam.gov"
+        },
+        {
+          "name": "USASpending.gov",
+          "desc": "Track federal spending and award data by agency, program, and contractor",
+          "url": "https://usaspending.gov"
+        },
+        {
+          "name": "FPDS (Federal Procurement Data System)",
+          "desc": "Detailed procurement data for market research",
+          "url": "https://fpds.gov"
+        },
+        {
+          "name": "GovWin IQ",
+          "desc": "Commercial market intelligence on federal contracting (subscription)",
+          "url": "https://iq.govwin.com"
+        }
+      ]
+    },
+    {
+      "name": "Free Assistance",
+      "links": [
+        {
+          "name": "PTAC Locator",
+          "desc": "Find your nearest Procurement Technical Assistance Center",
+          "url": "https://aptac-us.org"
+        },
+        {
+          "name": "SBDC Locator",
+          "desc": "Find your nearest Small Business Development Center",
+          "url": "https://sba.gov/tools/local-assistance/sbdc"
+        },
+        {
+          "name": "SBA Learning Platform",
+          "desc": "Free online courses on government contracting basics",
+          "url": "https://sba.gov/learning-center"
+        },
+        {
+          "name": "SBA Office of the National Ombudsman",
+          "desc": "Helps small businesses resolve issues with federal regulations and enforcement",
+          "url": "https://sba.gov/ombudsman"
+        }
+      ]
+    }
+  ]
+}

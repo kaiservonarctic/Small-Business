@@ -1,0 +1,76 @@
+{
+  "heading": "Small Business Contracting Foundations",
+  "subtitle": "Core concepts every small business and federal professional needs to understand before diving into specific programs and regulations.",
+  "intro": {
+    "title": "Why Small Business Matters in Federal Procurement",
+    "body": "The Small Business Act (15 U.S.C. § 631 et seq.) establishes that the federal government should award a \"fair proportion\" of contracts to small businesses. This statutory mandate drives the entire framework of set-asides, goals, and socioeconomic programs. The government-wide goal is 23% of prime contract dollars to small businesses, with additional subcategory goals for specific socioeconomic groups."
+  },
+  "topics": [
+    {
+      "title": "The Rule of Two",
+      "paragraphs": [
+        "The Rule of Two is the single most important protection for small businesses in federal contracting. It requires contracting officers to set aside acquisitions for small businesses when they have a reasonable expectation that at least two responsible small business concerns will submit offers at fair market prices.",
+        "**Statutory vs. Regulatory:** Between the micro-purchase threshold and simplified acquisition threshold (SAT), the Rule of Two is *statutory* — Congress requires it. Above the SAT, it has been *regulatory* — the FAR Council chose to keep it. The September 2025 FAR Part 19 overhaul retained the Rule of Two above the SAT, calling it \"essential to sound procurement.\"",
+        "**Key change (2025):** The Rule of Two no longer applies to task/delivery orders under multiple-award contracts. Contracting officers have discretion at the order level, and that discretionary decision cannot be protested."
+      ]
+    },
+    {
+      "title": "Size Standards & NAICS Codes",
+      "paragraphs": [
+        "SBA assigns a size standard to every North American Industry Classification System (NAICS) code. These standards define the maximum revenue or employee count a business can have and still be considered \"small\" for a given type of work. Size standards vary widely — from $9 million in some service industries to over $47 million in facilities support and $1 billion+ in some manufacturing sectors.",
+        "The NAICS code assigned to a solicitation determines which size standard applies. Businesses must self-certify as small relative to the applicable standard. Misrepresentation of small business status is a federal offense subject to penalties under the False Claims Act."
+      ]
+    },
+    {
+      "title": "Set-Asides vs. Sole-Source Awards",
+      "paragraphs": [
+        "**Set-Aside:** A competitive procurement restricted to a particular category of small business. All eligible firms in the designated category can compete. Competitive set-asides fall under full and open competition after exclusion of sources (FAR 6.102), not other than full and open competition (FAR 6.103) — a distinction that affects presolicitation notice requirements.",
+        "**Sole-Source:** A non-competitive award to a single firm, authorized under specific statutory authority (most commonly through the 8(a) program). Sole-source awards have dollar thresholds that were adjusted in October 2025 — the competitive threshold for 8(a) rose to $8.5M for manufacturing and $5.5M for other industries.",
+        "Under the 2025 FAR overhaul, contracting officers must first attempt a competitive 8(a) acquisition using government-wide vehicles before turning to sole-source, even below the competitive threshold."
+      ]
+    },
+    {
+      "title": "Prime Contracting vs. Subcontracting",
+      "paragraphs": [
+        "Federal small business participation happens at two levels: prime contracting (direct awards from the government) and subcontracting (awards from prime contractors to smaller firms). Both count toward agency small business goals, though they're tracked differently.",
+        "Large businesses receiving contracts above the simplified acquisition threshold must submit subcontracting plans with goals for small business participation. These plans are enforced through the FAR 52.219-9 clause. The limitation on subcontracting (FAR 52.219-14) frames the restriction as a prohibition on paying more than 50% to non-similarly-situated subcontractors — not a self-performance requirement."
+      ]
+    },
+    {
+      "title": "The SBA Procurement Scorecard",
+      "paragraphs": [
+        "Each fiscal year, SBA evaluates the 24 CFO Act agencies against their negotiated small business contracting goals. Agencies are graded A+ (≥120% of goal) through F (<70%). The scorecard covers prime and subcontracting goals across five categories: overall small business, SDB, WOSB, SDVOSB, and HUBZone.",
+        "For FY2025, all government-wide prime goals are set at their statutory floors: 23% small business, 5% SDB, 5% WOSB, 5% SDVOSB, and 3% HUBZone. The SDB goal returned to 5% after the Trump Administration rescinded EO 14091, which had incrementally raised it toward 15%."
+      ]
+    },
+    {
+      "title": "Key Acquisition Thresholds (Effective Oct 1, 2025)",
+      "thresholds": [
+        {
+          "label": "Micro-Purchase Threshold (MPT)",
+          "value": "$15,000"
+        },
+        {
+          "label": "Simplified Acquisition Threshold (SAT)",
+          "value": "$250,000"
+        },
+        {
+          "label": "8(a) Competitive Threshold (Manufacturing)",
+          "value": "$8.5 Million"
+        },
+        {
+          "label": "8(a) Competitive Threshold (All Other)",
+          "value": "$5.5 Million"
+        },
+        {
+          "label": "8(a) Sole-Source Limit (Manufacturing)",
+          "value": "$8.5 Million"
+        },
+        {
+          "label": "8(a) Sole-Source Limit (All Other)",
+          "value": "$5.5 Million"
+        }
+      ]
+    }
+  ]
+}

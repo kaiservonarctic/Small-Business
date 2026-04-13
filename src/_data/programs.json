@@ -1,0 +1,51 @@
+{
+  "heading": "SBA Socioeconomic Programs",
+  "subtitle": "Federal small business programs create preferential access to government contracts for qualifying businesses. Here's how each program works and its current status.",
+  "items": [
+    {
+      "name": "8(a) Business Development",
+      "statute": "15 U.S.C. § 637(a)",
+      "regs": "13 C.F.R. Part 124",
+      "status": "Major changes",
+      "statusColor": "red",
+      "description": "Nine-year program for socially and economically disadvantaged small businesses. Provides access to set-aside and sole-source contracts, plus business development support.",
+      "current": "The program is undergoing its most significant transformation since inception. SBA eliminated the race-based presumption of social disadvantage (January 2026), launched the first-ever program audit (June 2025), suspended 1,091 firms for failing to respond to a data call (January 2026), and initiated termination proceedings against ~800 firms (154 in D.C. for economic disadvantage failures, 628 nationally for non-compliance). New admissions dropped to 65 firms in 2025, down from 2,100+ during the prior administration."
+    },
+    {
+      "name": "HUBZone",
+      "statute": "15 U.S.C. § 657a",
+      "regs": "13 C.F.R. Part 126",
+      "status": "Stable",
+      "statusColor": "green",
+      "description": "Firms headquartered in a Historically Underutilized Business Zone with at least 35% of employees residing in a HUBZone qualify for set-aside and sole-source opportunities.",
+      "current": "No major regulatory changes. The HUBZone map is maintained by SBA and updated periodically. As 8(a) paths narrow, some agencies may look to HUBZone set-asides as an alternative socioeconomic vehicle. The 3% government-wide goal remains the statutory floor."
+    },
+    {
+      "name": "Service-Disabled Veteran-Owned SB (SDVOSB)",
+      "statute": "15 U.S.C. § 657f",
+      "regs": "13 C.F.R. Part 128",
+      "status": "Goal increased",
+      "statusColor": "yellow",
+      "description": "Firms owned and controlled by service-disabled veterans. SBA took over certification from VA through the Veterans Small Business Certification (VetCert) program.",
+      "current": "The SDVOSB prime contracting goal increased from 3% to 5% under the FY2024 NDAA (P.L. 118-31). SBA cleared a backlog of 2,700 VetCert applications in November 2025. This program is well-positioned going forward as the administration has signaled strong support for veteran-owned businesses."
+    },
+    {
+      "name": "Women-Owned Small Business (WOSB/EDWOSB)",
+      "statute": "15 U.S.C. § 637(m)",
+      "regs": "13 C.F.R. Part 127",
+      "status": "Stable",
+      "statusColor": "green",
+      "description": "WOSB set-asides are available in NAICS codes where women are underrepresented. Economically Disadvantaged WOSBs (EDWOSBs) have access to sole-source awards.",
+      "current": "No substantive changes in the FAR Part 19 overhaul. The 5% government-wide goal remains. SBA certifies WOSBs through its certification portal."
+    },
+    {
+      "name": "Small Disadvantaged Business (SDB)",
+      "statute": "15 U.S.C. § 637(d)",
+      "regs": "13 C.F.R. Part 124 (Subpart B)",
+      "status": "Goal reduced",
+      "statusColor": "yellow",
+      "description": "SDB is a designation, not an independent set-aside category. SDB status is used for evaluation preferences and subcontracting goals. Firms can self-certify as SDB in SAM.gov. The Rule of Two does not provide a basis for selecting SDB specifically — SDB is not an independent set-aside program.",
+      "current": "The government-wide SDB prime contracting goal returned to the statutory floor of 5% after the Trump Administration rescinded EO 14091, which had raised it incrementally toward 15%. SDB evaluation preferences remain in FAR 19.1202-2 but have diminished practical significance at the 5% goal level."
+    }
+  ]
+}

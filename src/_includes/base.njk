@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ site.meta.siteTitle }}</title>
+  <title>{{ meta.siteTitle }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
@@ -14,11 +14,11 @@
     <div class="nav-inner">
       <a href="#home" class="nav-brand">
         <div class="nav-logo">SB</div>
-        <span class="nav-title">{{ site.meta.siteTitle }}</span>
+        <span class="nav-title">{{ meta.siteTitle }}</span>
       </a>
       <button class="mobile-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
       <div class="nav-links">
-        {% for s in site.sections %}
+        {% for s in sections %}
         <a href="#{{ s.id }}" class="nav-link">{{ s.label }}</a>
         {% endfor %}
       </div>
@@ -31,8 +31,8 @@
 
   <footer class="footer">
     <div class="container">
-      <p>{{ site.meta.footerLine1 }}</p>
-      <p class="footer-sub">{{ site.meta.footerLine2 }}</p>
+      <p>{{ meta.footerLine1 }}</p>
+      <p class="footer-sub">{{ meta.footerLine2 }}</p>
     </div>
   </footer>
 

@@ -1,0 +1,74 @@
+{
+  "heading": "Statutes & Regulations",
+  "subtitle": "A map of the principal legal authorities governing small business contracting in the federal government — where the rules come from, who administers them, and how they interact.",
+  "intro": {
+    "title": "The Regulatory Architecture",
+    "body": "Small business contracting rules come from multiple layers of authority: statutes enacted by Congress, regulations promulgated by agencies (principally SBA and the FAR Council), executive orders, and agency-specific supplements. Understanding which layer a particular rule comes from tells you how durable it is and who has the power to change it."
+  },
+  "topics": [
+    {
+      "title": "The Small Business Act (15 U.S.C. §§ 631–657s)",
+      "paragraphs": [
+        "The foundation of everything. Enacted in 1953 (P.L. 83-163), the Small Business Act created the SBA, established the policy that small businesses should receive a \"fair proportion\" of federal contracts, and authorized the programs that implement that policy. As amended through P.L. 119-74 (January 2026), the Act provides statutory authority for the 8(a) program (§ 637(a)), HUBZone (§ 657a), SDVOSB (§ 657f), WOSB (§ 637(m)), size standards (§ 632), and the government-wide contracting goals (§ 644(g)).",
+        "The Act also requires each agency with procurement powers to establish an Office of Small and Disadvantaged Business Utilization (OSDBU), whose director reports directly to the agency head (§ 644(k)). The OSDBU is responsible for ensuring small business concerns are treated fairly in the acquisition process.",
+        "**Why this matters:** When a rule is in the statute, it takes an act of Congress to change it. The Rule of Two between the MPT and SAT, the 23% overall small business goal, and the existence of the socioeconomic programs are all statutory — no executive order or FAR revision can eliminate them."
+      ]
+    },
+    {
+      "title": "SBA Regulations (13 C.F.R. Parts 121–134)",
+      "paragraphs": [
+        "SBA implements the Small Business Act through its regulations in Title 13 of the Code of Federal Regulations. The key parts for contracting professionals:",
+        "**Part 121** — Size standards and size determination procedures. Defines how SBA calculates business size (revenue, employees) and the process for size protests and appeals.",
+        "**Part 124** — 8(a) Business Development Program. Eligibility, application, annual reviews, program terms, sole-source and competitive thresholds, joint ventures, and the mentor-protégé program as it applies to 8(a) participants.",
+        "**Part 125** — Government contracting programs. Covers the Rule of Two, small business set-aside procedures, subcontracting requirements, limitations on subcontracting, the certificate of competency (COC) process, and SDVOSB program rules.",
+        "**Part 126** — HUBZone program rules.",
+        "**Part 127** — WOSB/EDWOSB program rules.",
+        "**Part 128** — SDVOSB/VOSB certification (VetCert) program, transferred from VA to SBA.",
+        "**Part 134** — Rules of practice before the SBA Office of Hearings and Appeals (OHA), which handles size, status, and 8(a) program appeals.",
+        "**Something to consider:** SBA regulations and FAR provisions sometimes conflict, particularly after the September 2025 FAR Part 19 overhaul. Where there is a conflict, the statute controls — but the practical answer at the contracting officer's desk often depends on which agency's deviation has been adopted."
+      ]
+    },
+    {
+      "title": "The Federal Acquisition Regulation (FAR)",
+      "paragraphs": [
+        "The FAR is the primary regulation governing federal procurement, jointly issued by the Department of Defense, General Services Administration, and NASA through the FAR Council under the authority of the Office of Federal Procurement Policy (OFPP). It is codified at 48 C.F.R. Chapter 1.",
+        "**FAR Part 19** is the central part governing small business contracting (covered in detail in the FAR Provisions section of this guide), but small-business-relevant provisions appear throughout the FAR — in Parts 2, 5, 6, 7, 8, 15, 16, and 52 among others.",
+        "The FAR is regulatory, not statutory. The FAR Council can revise it through rulemaking (formal notice-and-comment under the Administrative Procedure Act) or, as with the current Revolutionary FAR Overhaul (RFO), through interim class deviations that agencies adopt individually. This distinction matters because class deviations can be implemented faster but have less legal permanence than formal rules."
+      ]
+    },
+    {
+      "title": "Agency FAR Supplements (DFARS, GSAM, DEAR, etc.)",
+      "paragraphs": [
+        "Most large federal agencies issue their own supplements to the FAR that add agency-specific rules. For small business contracting, the most relevant supplements include:",
+        "**DFARS** (48 C.F.R. Chapter 2) — Defense Federal Acquisition Regulation Supplement. DoD-specific small business provisions, including the comprehensive subcontracting plan test program and DoD mentor-protégé program.",
+        "**GSAM** (48 C.F.R. Chapter 5) — General Services Administration Acquisition Manual. Includes GSA-specific implementation of small business programs on GSA Schedule (MAS) contracts.",
+        "**DEAR** (48 C.F.R. Chapter 9) — Department of Energy Acquisition Regulation. DOE-specific provisions including those related to management and operating (M&O) contracts and small business subcontracting at DOE facilities.",
+        "Agency supplements cannot conflict with the FAR but can add requirements. When a small business is working within a particular agency's contracting environment, knowing the relevant supplement is essential."
+      ]
+    },
+    {
+      "title": "The Competition in Contracting Act (CICA)",
+      "paragraphs": [
+        "CICA (41 U.S.C. §§ 3301–3308, and 10 U.S.C. § 3201 et seq. for defense) requires \"full and open competition\" in federal procurement, with defined exceptions. Small business set-asides are authorized under one of these exceptions — competition after exclusion of sources (41 U.S.C. § 3303; FAR 6.102).",
+        "Understanding CICA's framework helps clarify how set-asides fit into the broader competition structure. A small business set-aside is not an exception to competition — it is a form of competition among a defined pool of eligible firms."
+      ]
+    },
+    {
+      "title": "Executive Orders & Policy Directives",
+      "paragraphs": [
+        "Presidents can shape small business contracting through executive orders and OMB memoranda, though these cannot override statute. Recent examples:",
+        "**EO 14091 (Biden, 2023):** Raised the SDB contracting goal toward 15%. Rescinded by the Trump Administration, returning the goal to the statutory 5%.",
+        "**EO 13985 (Biden, 2021):** Directed agencies to advance equity in procurement. Rescinded.",
+        "**OMB Memoranda:** Annual goaling guidance from OMB sets the expectations for agency negotiations with SBA. These memoranda carry significant practical weight in how agencies prioritize small business categories.",
+        "**Why this matters:** Executive actions can raise goals, create new reporting requirements, or shift emphasis among programs — but they can also be reversed by the next administration. Statutory provisions are far more durable."
+      ]
+    },
+    {
+      "title": "How the Layers Interact",
+      "paragraphs": [
+        "In practice, contracting officers navigate all these layers simultaneously. The hierarchy is: **statute → regulation (SBA regs and FAR) → agency supplement → class deviation → executive policy**. When conflicts arise, higher-authority sources control.",
+        "The current environment is unusually complex because the FAR Part 19 overhaul introduced provisions through class deviations that, in some cases, conflict with still-operative SBA regulations. Contracting officers and small businesses both need to track which authority applies in a given agency and a given procurement."
+      ]
+    }
+  ]
+}

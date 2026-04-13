@@ -1,0 +1,62 @@
+{
+  "heading": "FAR Provisions for Small Business",
+  "subtitle": "FAR Part 19 is the central regulatory framework, but small-business-relevant provisions appear throughout the FAR. This section covers the September 2025 overhaul and the other FAR Parts that matter.",
+  "alert": {
+    "title": "⚠ Implementation Note",
+    "body": "The FAR Part 19 rewrite is being implemented agency-by-agency through class deviations — it is not yet final rulemaking. Track which agencies have adopted the updated text. GSA issued Class Deviation RFO-2025-19 early on. The comment period closed November 3, 2025. The FAR Council will subject the overhauled FAR to formal notice-and-comment rulemaking before promulgation."
+  },
+  "highlights": [
+    {
+      "title": "Structural Reorganization",
+      "body": "Part 19 was retitled from \"Small Business Programs\" to \"Small Business\" and reorganized around the acquisition lifecycle into three subparts: **19.1 Presolicitation**, **19.2 Evaluation and Award**, and **19.3 Postaward**. Close to 300 individual rules and subparts were removed."
+    },
+    {
+      "title": "Rule of Two Preserved",
+      "body": "The Rule of Two survived — retained above the SAT as \"essential to sound procurement.\" However, it now applies to **all small businesses first**, before socioeconomic categories. Contracting officers must consider an overall SB set-aside before moving to a specific program."
+    }
+  ],
+  "details": [
+    {
+      "title": "Multiple-Award Contracts: Discretion, Not Mandate",
+      "paragraphs": [
+        "The Rule of Two no longer applies at the task/delivery order level under multiple-award contracts (MACs). Instead, contracting officers have discretionary authority to decide whether to set aside an order. This discretionary decision cannot serve as the basis for a bid protest.",
+        "This is a significant change — task and delivery orders represent a large and growing share of federal spending. Small businesses lose mandatory set-aside protection on this portion of the contracting landscape."
+      ]
+    },
+    {
+      "title": "8(a) Program Changes in FAR Part 19",
+      "paragraphs": [
+        "**Competition before sole-source:** Contracting officers must first attempt competitive 8(a) acquisitions using GWACs before pursuing sole-source awards, even below the competitive threshold.",
+        "**End of \"Once 8(a), Always 8(a)\":** Follow-on requirements can be automatically released from the 8(a) program to be set aside for HUBZone, SDVOSB, or WOSB programs — without SBA approval or written notification to SBA. This is a major departure from longstanding practice.",
+        "**Potential tension:** Some of these FAR provisions may conflict with existing SBA regulations at 13 C.F.R. § 124.503(d)(1). SBA regulatory updates are still pending to reconcile inconsistencies."
+      ]
+    },
+    {
+      "title": "Recertification Changes",
+      "paragraphs": [
+        "Size and status will now be locked in at the contract level. The requirement for small businesses to re-represent their size at the task order level has been eliminated. Recertification is triggered only by contract-level events like option exercise, novation, or acquisition.",
+        "This may benefit small business incumbents but could limit opportunities for new small businesses to challenge incumbents' size at the order level. Note that SBA regulations at 13 C.F.R. §§ 125.12 and 121.404 still permit order-level recertification, creating a regulatory inconsistency agencies will need to navigate."
+      ]
+    },
+    {
+      "title": "Removed Provisions Worth Noting",
+      "paragraphs": [
+        "The overhaul removed several provisions that previously supported small business participation:",
+        "The detailed description of duties for Procurement Center Representatives (PCRs) and OSDBU offices was removed from the FAR, though these duties remain in SBA's regulations. The requirement that each agency with contracting authority establish an Office of Small and Disadvantaged Business Utilization was eliminated from FAR text (though contracting officers must still consider OSDBU recommendations). Several \"equitable opportunity\" actions that contracting officers \"shall take\" — including dividing acquisitions into reasonable small lots — were removed."
+      ]
+    },
+    {
+      "title": "Relevant Provisions in Other FAR Parts",
+      "paragraphs": [
+        "Small business provisions are not confined to Part 19. Key provisions elsewhere in the FAR include:",
+        "**Part 2 (Definitions):** Defines \"small business concern\" (2.101) by reference to SBA's size standards. Understanding this definition is foundational — it determines eligibility for every program and set-aside.",
+        "**Part 5 (Publicizing):** Requires publication of proposed contract actions above certain thresholds on SAM.gov. Set-aside solicitations have specific publication requirements. Presolicitation notice requirements differ depending on whether the procurement is full-and-open or full-and-open after exclusion of sources.",
+        "**Part 6 (Competition):** Competitive small business set-asides fall under full and open competition after exclusion of sources (6.102), not other than full and open competition (6.103). This distinction affects whether a justification and approval (J&A) is required. Sole-source 8(a) awards above the competitive threshold do require a J&A under 6.302-5.",
+        "**Part 7 (Acquisition Planning):** Requires agencies to consider small business participation during acquisition planning, including whether requirements can be structured to facilitate small business competition. Market research under 7.102 must assess the availability of small businesses.",
+        "**Part 8 (Required Sources):** Establishes priorities for mandatory government sources (e.g., AbilityOne, Federal Prison Industries) that take precedence over small business set-asides. Understanding these priorities helps explain why some procurements cannot be set aside even when small businesses are available.",
+        "**Part 15 (Contracting by Negotiation):** Source selection evaluation factors may include SDB evaluation preferences (when applicable) and past performance in small business subcontracting.",
+        "**Part 52 (Solicitation Provisions and Contract Clauses):** The 52.219 series contains the actual clauses that implement Part 19 policy. Key clauses include 52.219-6 (notice of total SB set-aside), 52.219-9 (subcontracting plan requirements), 52.219-14 (limitations on subcontracting), and 52.219-28 (post-award SB program representation)."
+      ]
+    }
+  ]
+}

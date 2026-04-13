@@ -1,0 +1,28 @@
+{
+  "badgeText": "Practitioner Reference Guide",
+  "headline": "Federal Small Business Contracting",
+  "subtitle": "A comprehensive guide to the statutes, regulations, and programs that govern small business participation in federal procurement — written for small businesses and federal contracting professionals.",
+  "updateNote": "Reflects the FAR Part 19 overhaul (September 2025), FAC 2025-06 threshold adjustments, SBA 8(a) program changes, and the current regulatory landscape through early 2026.",
+  "stats": [
+    {
+      "number": "23%",
+      "label": "Federal SB Goal",
+      "sublabel": "Government-wide prime target"
+    },
+    {
+      "number": "$178.6B",
+      "label": "SB Contracts (FY2023)",
+      "sublabel": "Government-wide small business awards"
+    },
+    {
+      "number": "~4,300",
+      "label": "8(a) Firms (Dec 2025)",
+      "sublabel": "Before audit suspensions"
+    },
+    {
+      "number": "300+",
+      "label": "FAR Rules Removed",
+      "sublabel": "Part 19 streamlining"
+    }
+  ]
+}

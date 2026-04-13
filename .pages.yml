@@ -5,21 +5,21 @@ content:
   - name: meta
     label: Site Settings
     type: file
-    path: content.json
+    path: src/_data/meta.json
     fields:
-      - name: meta.siteTitle
+      - name: siteTitle
         label: Site Title
         type: string
-      - name: meta.lastUpdated
+      - name: lastUpdated
         label: Last Updated
         type: string
-      - name: meta.disclaimer
+      - name: disclaimer
         label: Disclaimer
         type: text
-      - name: meta.footerLine1
+      - name: footerLine1
         label: Footer Line 1
         type: string
-      - name: meta.footerLine2
+      - name: footerLine2
         label: Footer Line 2
         type: string
 
@@ -27,38 +27,34 @@ content:
   - name: sections
     label: Navigation
     type: file
-    path: content.json
+    path: src/_data/sections.json
     fields:
-      - name: sections
-        label: Nav Sections
-        type: object[]
-        fields:
-          - name: id
-            label: ID (used in URL hash)
-            type: string
-          - name: label
-            label: Display Label
-            type: string
+      - name: id
+        label: ID (used in URL hash)
+        type: string
+      - name: label
+        label: Display Label
+        type: string
 
   # ─── Home Page ───
   - name: home
     label: Home Page
     type: file
-    path: content.json
+    path: src/_data/home.json
     fields:
-      - name: home.badgeText
+      - name: badgeText
         label: Badge Text
         type: string
-      - name: home.headline
+      - name: headline
         label: Headline
         type: string
-      - name: home.subtitle
+      - name: subtitle
         label: Subtitle
         type: text
-      - name: home.updateNote
+      - name: updateNote
         label: Update Note
         type: text
-      - name: home.stats
+      - name: stats
         label: Stats
         type: object[]
         fields:
@@ -76,21 +72,25 @@ content:
   - name: foundations
     label: Foundations
     type: file
-    path: content.json
+    path: src/_data/foundations.json
     fields:
-      - name: foundations.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: foundations.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: foundations.intro.title
-        label: Intro Title
-        type: string
-      - name: foundations.intro.body
-        label: Intro Body
-        type: text
-      - name: foundations.topics
+      - name: intro
+        label: Introduction
+        type: object
+        fields:
+          - name: title
+            label: Intro Title
+            type: string
+          - name: body
+            label: Intro Body
+            type: text
+      - name: topics
         label: Topics
         type: object[]
         fields:
@@ -101,7 +101,7 @@ content:
             label: Paragraphs
             type: string[]
           - name: thresholds
-            label: Thresholds (optional, for threshold topics only)
+            label: Thresholds (for threshold topics only)
             type: object[]
             fields:
               - name: label
@@ -115,21 +115,25 @@ content:
   - name: statutes
     label: Statutes & Regs
     type: file
-    path: content.json
+    path: src/_data/statutes.json
     fields:
-      - name: statutes.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: statutes.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: statutes.intro.title
-        label: Intro Title
-        type: string
-      - name: statutes.intro.body
-        label: Intro Body
-        type: text
-      - name: statutes.topics
+      - name: intro
+        label: Introduction
+        type: object
+        fields:
+          - name: title
+            label: Intro Title
+            type: string
+          - name: body
+            label: Intro Body
+            type: text
+      - name: topics
         label: Topics
         type: object[]
         fields:
@@ -144,15 +148,15 @@ content:
   - name: programs
     label: SBA Programs
     type: file
-    path: content.json
+    path: src/_data/programs.json
     fields:
-      - name: programs.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: programs.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: programs.items
+      - name: items
         label: Programs
         type: object[]
         fields:
@@ -189,21 +193,25 @@ content:
   - name: far19
     label: FAR Provisions
     type: file
-    path: content.json
+    path: src/_data/far19.json
     fields:
-      - name: far19.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: far19.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: far19.alert.title
-        label: Alert Title
-        type: string
-      - name: far19.alert.body
-        label: Alert Body
-        type: text
-      - name: far19.highlights
+      - name: alert
+        label: Alert Box
+        type: object
+        fields:
+          - name: title
+            label: Alert Title
+            type: string
+          - name: body
+            label: Alert Body
+            type: text
+      - name: highlights
         label: Highlights
         type: object[]
         fields:
@@ -213,7 +221,7 @@ content:
           - name: body
             label: Body
             type: text
-      - name: far19.details
+      - name: details
         label: Detail Sections
         type: object[]
         fields:
@@ -228,15 +236,15 @@ content:
   - name: history
     label: History
     type: file
-    path: content.json
+    path: src/_data/history.json
     fields:
-      - name: history.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: history.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: history.timeline
+      - name: timeline
         label: Timeline Events
         type: object[]
         fields:
@@ -261,7 +269,7 @@ content:
                 value: yellow
               - label: Green
                 value: green
-      - name: history.topics
+      - name: topics
         label: History Topics
         type: object[]
         fields:
@@ -276,15 +284,15 @@ content:
   - name: resources
     label: Resources
     type: file
-    path: content.json
+    path: src/_data/resources.json
     fields:
-      - name: resources.heading
+      - name: heading
         label: Section Heading
         type: string
-      - name: resources.subtitle
+      - name: subtitle
         label: Section Subtitle
         type: text
-      - name: resources.categories
+      - name: categories
         label: Resource Categories
         type: object[]
         fields:

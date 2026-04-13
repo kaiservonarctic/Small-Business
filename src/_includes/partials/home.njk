@@ -1,12 +1,12 @@
 <section id="home" class="hero">
   <div class="container">
-    <span class="badge badge--blue">{{ site.home.badgeText }}</span>
-    <h1 class="hero-headline">{{ site.home.headline }}</h1>
-    <p class="hero-subtitle">{{ site.home.subtitle }}</p>
-    <p class="hero-update">{{ site.home.updateNote | md | safe }}</p>
+    <span class="badge badge--blue">{{ home.badgeText }}</span>
+    <h1 class="hero-headline">{{ home.headline }}</h1>
+    <p class="hero-subtitle">{{ home.subtitle }}</p>
+    <p class="hero-update">{{ home.updateNote | md | safe }}</p>
 
     <div class="stats-grid">
-      {% for stat in site.home.stats %}
+      {% for stat in home.stats %}
       <div class="stat-card">
         <div class="stat-number">{{ stat.number }}</div>
         <div class="stat-label">{{ stat.label }}</div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="disclaimer">
-      <p>{{ site.meta.disclaimer }}</p>
+      <p>{{ meta.disclaimer }}</p>
     </div>
   </div>
 </section>
