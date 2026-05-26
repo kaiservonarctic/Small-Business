@@ -26,8 +26,13 @@
       "name": "Regulations & Policy",
       "links": [
         {
-          "name": "FAR Part 19 (Current)",
-          "desc": "Acquisition.gov — official FAR text",
+          "name": "FAR Part 19 (Post-Overhaul)",
+          "desc": "Acquisition.gov ",
+          "url": "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19"
+        },
+        {
+          "name": "FAR Part 19 (Pre-Overhaul)",
+          "desc": "Acquisition.gov ",
           "url": "https://acquisition.gov/far/part-19"
         },
         {
@@ -39,11 +44,6 @@
           "name": "SBA Procurement Scorecard",
           "desc": "Annual agency performance against small business goals",
           "url": "https://sba.gov/federal-contracting/contracting-data/small-business-procurement-scorecard"
-        },
-        {
-          "name": "FAR Overhaul Resources",
-          "desc": "Deviation guides and practitioner albums from the FAR Council",
-          "url": "https://acquisition.gov"
         }
       ]
     },
