@@ -133,7 +133,7 @@ Some visual changes go beyond colors and spacing. For example:
 - **Changing what fields display on a program card** — edit `src/_includes/partials/programs.njk`
 - **Adding a completely new section type** — requires a new template file in `src/_includes/partials/`
 
-For these kinds of structural changes, it is best to describe what you want to Claude and let it make the edits. These files use a templating language called Nunjucks, which is not difficult but is not plain English either.
+These files use a templating language called Nunjucks. There is not currently a no-code option for creating new templates in Eleventy.
 
 ---
 
